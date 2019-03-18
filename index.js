@@ -6,9 +6,12 @@ Vue.component("l-marker", Vue2Leaflet.LMarker);
 Vue.component("l-polyline", Vue2Leaflet.LPolyline);
 Vue.component("l-geo-json", Vue2Leaflet.LGeoJson);
 
+import Event from './components/Event.js'
+
 Vue.config.devtools = true;
 
 new Vue({
+  components: { Event },
   el: "#app",
   data: {
     url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
@@ -61,11 +64,9 @@ new Vue({
         @click="onClick(i)"
       />
     </l-map>
-    <div style="padding: 20px">
-      <div v-for="(m,i) in markers">
-        <div>{{ m.title }}</div>
-        <div>{{ [m.lat,m.lng] }}</div>
-      </div>
+    <div style="flex: 1">
+      <Event title="Hello" />
+    </div>
     </div>
   </div>
   `
