@@ -16,12 +16,11 @@ new Vue({
   data: {
     url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
-    zoom: 9,
-    center: [59, 24],
+    zoom: 7,
+    center: [58.75, 24],
     markers: [],
     id: "19Xj62Df8IvP-yLDpMKEWknR-ytazmbIwAIJptxHPZgA",
     value: null,
-    county: null,
     counties: [
       "harjumaa",
       "hiiumaa",
@@ -37,7 +36,8 @@ new Vue({
       "viljandimaa",
       "vorumaa"
     ],
-    c: {}
+    countiesData: [],
+    activeCounty: 'hiiumaa'
   },
   methods: {
     onClick(i) {
@@ -63,7 +63,7 @@ new Vue({
       fetch(`./tracks/${c}.json`)
         .then(res => res.json())
         .then(res => {
-          this.c[c] = res;
+          this.countiesData.push({county: c, data: res});
         });
     });
   },
@@ -72,9 +72,10 @@ new Vue({
     <l-map style="height: 100vh; width: 80vw" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"/>
       <l-geo-json
-        v-if="c"
-        v-for="(cc,i) in c"
-        :geojson="cc"
+        v-if="countiesData.length"
+        v-for="(county,i) in countiesData"
+        :geojson="county.data"
+        :optionsStyle="{ color: '#0084b2', opacity: county.county == activeCounty ? 1 : 0.2 }"
       />
       <l-marker
         v-if="markers.length"
@@ -84,9 +85,17 @@ new Vue({
       />
     </l-map>
     <div style="flex: 1">
+      <div
+        v-for="county in counties"
+        style="padding: 5px 10px; cursor: pointer;"
+        :style="{background: county == activeCounty ? '#ddeeff' : ''}"
+        @click="activeCounty = county"
+      >{{ county }}</div>
       <Event title="Hello" />
     </div>
     </div>
   </div>
   `
 });
+
+// #0073a5
