@@ -8,6 +8,8 @@ h1, h2, h3, h4 {
 }
 
 .Event {
-  background: royalblue;
-  height: 100vh;
+  background-image: url(https://cdn.artaic.com/wp-content/uploads/2015/03/artaic-blue-pattern-coded-distress-cobalt-tile-0303902-900x600.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+    height: 100vh;
 }
