@@ -1,5 +1,3 @@
-   <!--div style="padding: 20px">
-      <div v-for="(m,i) in markers">
-        <div>{{ m.title }}</div>
-        <div>{{ [m.lat,m.lng] }}</div>
-      </div-->
+### Waypoints
+
+https://navicup.com/public/pages/jQuery-requests/get-class-waypoints-json.php?url=tuletulemine-2019&app_pictures=5&astages=1281,1296,1297

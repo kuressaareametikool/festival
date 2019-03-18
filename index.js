@@ -5,6 +5,7 @@ Vue.component("l-tile-layer", Vue2Leaflet.LTileLayer);
 Vue.component("l-marker", Vue2Leaflet.LMarker);
 Vue.component("l-polyline", Vue2Leaflet.LPolyline);
 Vue.component("l-geo-json", Vue2Leaflet.LGeoJson);
+Vue.component("l-icon", Vue2Leaflet.LIcon);
 
 import Event from "./components/Event.js";
 
@@ -37,12 +38,14 @@ new Vue({
       "vorumaa"
     ],
     countiesData: [],
-    activeCounty: 'hiiumaa'
+    activeCounty: 'hiiumaa',
+    waypoints: []
   },
   methods: {
+    buffer: turf.buffer,
     onClick(i) {
       console.log(i);
-    }
+    },
   },
   mounted() {
     fetch(
@@ -66,6 +69,11 @@ new Vue({
           this.countiesData.push({county: c, data: res});
         });
     });
+
+    fetch('./waypoints/waypoints.json')
+      .then(res => res.json())
+      .then(res => this.waypoints = res)
+    
   },
   template: `
   <div style="display: flex">
@@ -83,6 +91,18 @@ new Vue({
         :lat-lng="[m.lat,m.lng]"
         @click="onClick(i)"
       />
+      <!--l-marker
+        v-if="waypoints.length"
+        v-for="(w,j) in waypoints"
+        :lat-lng="[w.lat,w.lng]"
+      >
+        <l-icon
+          icon-url="./markers/1.png"
+          :icon-size="[44 / 2,51 / 2]"
+          :icon-anchor="[44 / 2 / 2, 51 / 2]"
+          :opacity="0.5"
+        />
+      </l-marker-->
     </l-map>
     <div style="flex: 1">
       <div
