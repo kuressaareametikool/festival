@@ -136,7 +136,7 @@ new Vue({
         :lat-lng="[w.lat,w.lng]"
       >
         <l-icon
-          :icon-url="w.icon ? w.icon : ''"
+          icon-url="./markers/1.png"
           :icon-size="[44 / 2,51 / 2]"
           :icon-anchor="[44 / 2 / 2, 51 / 2]"
         />

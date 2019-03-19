@@ -1,7 +1,7 @@
 export default {
   template: `
   <div class="Top">
-    Hi I am top header
+    Top
   </div>
   `
 }
