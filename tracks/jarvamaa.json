@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tule teekond 1, 2, 3 juuli Järvamaa",
+        "time": "2019-03-16T14:08:10+02:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.527121,
+            58.901186  
+          ],
+          [
+            25.485775,
+            58.961114
+          ]
+        ]
+      }
+    }
+  ]
+}
