@@ -6,7 +6,6 @@
   background-size: 500px 1000px;
   background-position: -40px -400px;
   height: 100vh;
-  text-align: center;
 }
 .CloseEvent {
 	text-align: right;
@@ -21,11 +20,29 @@
 }
 .EventInfo {
 	display: flex;
+	padding: 15px;
 }
 .EventInfo_date {
-	left: auto;
-	padding: 20px;
+	padding: 10px;
+	line-height: 1;
+
+}
+.EventInfo_date_month {
+	text-align: center;
+	margin: 0;
+}
+.EventInfo_date_number {
+	font-weight: normal;
+	font-size: 48px;
+	text-align: center;
+	margin: 0;
+}
+.EventInfo_meta {
+	padding: 10px;
+}
+.EventInfo_name {
+	font-weight: 800;
 }
 .EventInfo_description {
-	padding: 20px;
+	padding: 10px;
 }
