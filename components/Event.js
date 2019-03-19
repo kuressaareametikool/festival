@@ -8,13 +8,27 @@ export default {
       </div>
       <div class="EventInfo">
       	<div class="EventInfo_date">
-      	16.04
+      		<h3 class="EventInfo_date_number">
+      		16.
+       		</h3>
+       		<h5 class="EventInfo_date_month">
+      		aprill
+      		</h5>
+      	</div>
+      	<div class="EventInfo_meta">
+      		<h3 class="EventInfo_name">
+      		{{ event.name }}
+       		</h3>
+       		<p class="EventInfo_location">
+      		Orjaku külamaja	19.00-02.00
+      		</p>
+      	</div>
       	</div>
       	<div class="EventInfo_description">
-      	Halleluuja
-      	</div>
+      	Jazzfestivali koduses õhkkonnas võib nautida nii mahedamat kui ka mürglimat muusikat. Esinejad nii Eestist kui mujalt.
+		Sissepääs tasuta.
       </div>
-      <div>{{ event.name }}</div>
+      <div></div>
     </div>
   `
 }
