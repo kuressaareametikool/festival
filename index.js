@@ -137,10 +137,15 @@ new Vue({
         :key="'l4' + i"
         :lat-lng="[w.lat,w.lng]"
       >
-        <l-icon
+        <!-- <l-icon
           :icon-url="w.icon ? w.icon : ''"
           :icon-size="[44 / 2,51 / 2]"
           :icon-anchor="[44 / 2 / 2, 51 / 2]"
+        /> -->
+        <l-icon
+          :icon-url="Math.floor(Math.random()*2) == 0 ? 'markers/marker-donut-blue.png' : 'markers/marker-donut-red.png'"
+          :icon-size="[ 18, 18 ]"
+          :icon-anchor="[ 18/2, 18/2 ]"
         />
       </l-marker>
 
