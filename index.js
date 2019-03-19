@@ -89,7 +89,7 @@ new Vue({
       :activeCounty="activeCounty"
     />
     <div style="display: flex">
-    <l-map style="height: 100vh; width: 80vw" :zoom="zoom" :center="center">
+    <l-map style="height: 100vh; width: 75vw" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"/>
       
       <!-- Buffered geometry for debugging -->
@@ -151,7 +151,7 @@ new Vue({
 
     </l-map>
 
-    <div style="flex: 1">
+    <div style="flex: 1;">
       <EventList
         v-if="!activeEventId"
         :events="waypoints.filter(w => w.county == activeCounty)"
@@ -163,7 +163,7 @@ new Vue({
         @closeEvent="() => activeEventId = null"
       />
     </div>
-    </div>
+    <!-- </div> -->
   </div>
   </div>
   `
