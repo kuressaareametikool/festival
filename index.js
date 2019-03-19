@@ -103,7 +103,6 @@ new Vue({
   },
   template: `
   <div>
-    {{ waypointsWithCounty }}
     <Top />
     <Counties
       :counties="counties"
@@ -155,7 +154,7 @@ new Vue({
       
       <l-marker
         v-if="waypoints.length"
-        v-for="(w,i) in waypoints"
+        v-for="(w,i) in waypoints.filter(w => w.county == activeCounty)"
         :key="'l4' + i"
         :lat-lng="[w.lat,w.lng]"
       >
@@ -163,10 +162,11 @@ new Vue({
           :icon-url="w.icon ? w.icon : ''"
           :icon-size="[44 / 2,51 / 2]"
           :icon-anchor="[44 / 2 / 2, 51 / 2]"
-          :opacity="0.5"
         />
       </l-marker>
+
     </l-map>
+
     <div style="flex: 1">
       <Event title="Hello" />
     </div>
