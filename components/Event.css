@@ -1,7 +1,21 @@
 .Event {
   background-image: url(../assets/background_blue.svg);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: -40px -55px;
+  /*background-size: cover;
+  background-position: -40px -55px;*/
+  background-size: 500px 1000px;
+  background-position: -40px -400px;
   height: 100vh;
+  text-align: center;
+}
+.CloseEvent {
+	text-align: right;
+	color: white;
+	padding: 10px;
+	font-weight: 700;
+	border: 1px;
+
+}
+.Event_image {
+	filter: sepia(80%);
 }
