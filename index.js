@@ -43,8 +43,9 @@ new Vue({
       "vorumaa"
     ],
     countiesData: [],
+    waypoints: [],
     activeCounty: "hiiumaa",
-    waypoints: []
+    activeEventId: null
   },
   methods: {
     buffer: turf.buffer,
@@ -144,8 +145,16 @@ new Vue({
     </l-map>
 
     <div style="flex: 1">
-      <EventList :events="waypoints.filter(w => w.county == activeCounty)" />
-      <Event title="Hello" />
+      <EventList
+        v-if="!activeEventId"
+        :events="waypoints.filter(w => w.county == activeCounty)"
+        @changeEvent="id => activeEventId = id"
+      />
+      <Event
+        v-if="activeEventId"
+        :event="waypoints.filter(w => w.ID == activeEventId)[0]"
+        @closeEvent="() => activeEventId = null"
+      />
     </div>
     </div>
   </div>
