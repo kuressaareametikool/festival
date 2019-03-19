@@ -78,27 +78,37 @@ new Vue({
         this.waypoints = res.map(w => {
           w.lat = parseFloat(w.lat);
           w.lng = parseFloat(w.lng);
+          this.countiesData.forEach(c => {
+            if (
+              turf.intersect(
+                turf.buffer(turf.point([w.lng, w.lat]), 1),
+                turf.buffer(c.data.features[0], 1)
+              )
+            ) {
+              w.county = c.county;
+            }
+          });
           return w;
         });
       });
   },
   computed: {
-    waypointsWithCounty() {
-      return this.waypoints.slice(0, 10).map(w => {
-        w.county = "";
-        this.countiesData.forEach(c => {
-          if (
-            turf.intersect(
-              turf.buffer(turf.point([w.lng, w.lat]), 1),
-              turf.buffer(c.data.features[0], 1)
-            )
-          ) {
-            w.county = c.county;
-          }
-        });
-        return w;
-      });
-    }
+    // waypointsWithCounty() {
+    //   return this.waypoints.slice(0, 10).map(w => {
+    //     w.county = "";
+    //     this.countiesData.forEach(c => {
+    //       if (
+    //         turf.intersect(
+    //           turf.buffer(turf.point([w.lng, w.lat]), 1),
+    //           turf.buffer(c.data.features[0], 1)
+    //         )
+    //       ) {
+    //         w.county = c.county;
+    //       }
+    //     });
+    //     return w;
+    //   });
+    // }
   },
   template: `
   <div>
