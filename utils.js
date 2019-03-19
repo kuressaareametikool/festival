@@ -13,3 +13,17 @@ export const parseSheet = data => {
       }, {});
   });
 };
+
+export const waypointsToGeoJSON = waypoints => {
+  return {
+    type: "FeatureCollection",
+    features: waypoints.map(w => ({
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "Point",
+        coordinates: [parseFloat(w.lng), parseFloat(w.lat)]
+      }
+    }))
+  };
+};

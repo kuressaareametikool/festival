@@ -1,4 +1,4 @@
-import { parseSheet } from "./utils.js";
+import { parseSheet, waypointsToGeoJSON } from "./utils.js";
 
 Vue.component("l-map", Vue2Leaflet.LMap);
 Vue.component("l-tile-layer", Vue2Leaflet.LTileLayer);
@@ -39,10 +39,11 @@ new Vue({
     ],
     countiesData: [],
     activeCounty: 'hiiumaa',
-    waypoints: []
+    waypoints: [],
   },
   methods: {
     buffer: turf.buffer,
+    waypointsToGeoJSON,
     onClick(i) {
       console.log(i);
     },
@@ -79,34 +80,64 @@ new Vue({
   <div style="display: flex">
     <l-map style="height: 100vh; width: 80vw" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"/>
+      
+      <!-- Buffered geometry for debugging -->
+      
+      <!--
       <l-geo-json
         v-if="countiesData.length"
         v-for="(county,i) in countiesData"
+        :key="'l1' + i"
+        :geojson="buffer(county.data,1)"
+        :optionsStyle="{ color: '#0084b2', opacity: county.county == activeCounty ? 1 : 0.2 }"
+      />
+      <l-geo-json
+        v-if="waypoints"
+        :geojson="buffer(waypointsToGeoJSON(waypoints),1)"
+        :optionsStyle="{}"
+      />
+      -->
+      
+      <!-- Fake data from Google Sheets -->
+      
+      <!--l-marker
+        v-if="markers.length"
+        v-for="(m,i) in markers"
+        :key="'l2' + i"
+        :lat-lng="[m.lat,m.lng]"
+        @click="onClick(i)"
+      /-->
+      
+      <!--Tracks data -->
+
+      <l-geo-json
+        v-if="countiesData.length"
+        v-for="(county,i) in countiesData"
+        :key="'l3' + i"
         :geojson="county.data"
         :optionsStyle="{ color: '#0084b2', opacity: county.county == activeCounty ? 1 : 0.2 }"
       />
+
+      <!--Waypoint data-->
+      
       <l-marker
-        v-if="markers.length"
-        v-for="(m,i) in markers"
-        :lat-lng="[m.lat,m.lng]"
-        @click="onClick(i)"
-      />
-      <!--l-marker
         v-if="waypoints.length"
-        v-for="(w,j) in waypoints"
+        v-for="(w,i) in waypoints"
+        :key="'l4' + i"
         :lat-lng="[w.lat,w.lng]"
       >
         <l-icon
-          icon-url="./markers/1.png"
+          :icon-url="w.icon ? w.icon : ''"
           :icon-size="[44 / 2,51 / 2]"
           :icon-anchor="[44 / 2 / 2, 51 / 2]"
           :opacity="0.5"
         />
-      </l-marker-->
+      </l-marker>
     </l-map>
     <div style="flex: 1">
       <div
-        v-for="county in counties"
+        v-for="(county,i) in counties"
+        :key="i"
         style="padding: 5px 10px; cursor: pointer;"
         :style="{background: county == activeCounty ? '#ddeeff' : ''}"
         @click="activeCounty = county"
