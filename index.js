@@ -72,24 +72,15 @@ new Vue({
         });
     });
 
-    fetch("./waypoints/waypoints.json")
+    fetch("./waypoints/waypoints_with_counties.json")
       .then(res => res.json())
       .then(res => {
-        this.waypoints = res.map(w => {
-          w.lat = parseFloat(w.lat);
-          w.lng = parseFloat(w.lng);
-          this.countiesData.forEach(c => {
-            if (
-              turf.intersect(
-                turf.buffer(turf.point([w.lng, w.lat]), 1),
-                turf.buffer(c.data.features[0], 1)
-              )
-            ) {
-              w.county = c.county;
-            }
-          });
-          return w;
-        });
+        this.waypoints = res
+        // this.waypoints = res.map(w => {
+        //   w.lat = parseFloat(w.lat);
+        //   w.lng = parseFloat(w.lng);
+        //   return w;
+        // });
       });
   },
   computed: {
@@ -114,7 +105,11 @@ new Vue({
   <div>
     {{ waypointsWithCounty }}
     <Top />
-    <Counties :counties="counties" @changeCounty="c => activeCounty = c" />
+    <Counties
+      :counties="counties"
+      @changeCounty="c => activeCounty = c"
+      :activeCounty="activeCounty"
+    />
     <div style="display: flex">
     <l-map style="height: 100vh; width: 80vw" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"/>
