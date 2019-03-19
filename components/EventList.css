@@ -1,0 +1,10 @@
+.EventList {
+  padding: 20px;
+  height: 80vh;
+  overflow: auto;
+}
+
+.EventList__event {
+  padding-bottom: 20px;
+  cursor: pointer;
+}

@@ -13,11 +13,12 @@ Vue.component("l-icon", Vue2Leaflet.LIcon);
 
 import Top from "./components/Top.js";
 import Counties from "./components/Counties.js";
+import EventList from "./components/EventList.js";
 import Event from "./components/Event.js";
 
 new Vue({
   el: "#app",
-  components: { Top, Counties, Event },
+  components: { Top, Counties, EventList, Event },
   data: {
     url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
@@ -74,32 +75,7 @@ new Vue({
 
     fetch("./waypoints/waypoints_with_counties.json")
       .then(res => res.json())
-      .then(res => {
-        this.waypoints = res
-        // this.waypoints = res.map(w => {
-        //   w.lat = parseFloat(w.lat);
-        //   w.lng = parseFloat(w.lng);
-        //   return w;
-        // });
-      });
-  },
-  computed: {
-    // waypointsWithCounty() {
-    //   return this.waypoints.slice(0, 10).map(w => {
-    //     w.county = "";
-    //     this.countiesData.forEach(c => {
-    //       if (
-    //         turf.intersect(
-    //           turf.buffer(turf.point([w.lng, w.lat]), 1),
-    //           turf.buffer(c.data.features[0], 1)
-    //         )
-    //       ) {
-    //         w.county = c.county;
-    //       }
-    //     });
-    //     return w;
-    //   });
-    // }
+      .then(res => (this.waypoints = res));
   },
   template: `
   <div>
@@ -168,6 +144,7 @@ new Vue({
     </l-map>
 
     <div style="flex: 1">
+      <EventList :events="waypoints.filter(w => w.county == activeCounty)" />
       <Event title="Hello" />
     </div>
     </div>
