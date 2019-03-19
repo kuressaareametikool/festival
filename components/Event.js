@@ -1,8 +1,9 @@
 export default {
-  props: ['title'],
+  props: ['event'],
   template: `
     <div class="Event">
-      <div>{{ title }}</div>
+      <div @click="$emit('closeEvent')">×</div>
+      <div>{{ event.name }}</div>
     </div>
   `
 }
