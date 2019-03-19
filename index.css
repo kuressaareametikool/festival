@@ -1,12 +1,23 @@
+:root {
+  --primary: #0075B0;
+  --secondary: #9A3B26;
+  --third: #EDCFB3;
+  --fourth: #EF7659;
+  --black: #222222;
+  --white: #ffffff;
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  background: var(--white);
 }
 
 h1, h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
   margin-top: 0;
 }
+
 img {
 	width: 100%;
 }

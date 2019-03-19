@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tule teekond 1, 2, 3 juuli Ida-Virumaa",
+        "time": "2019-03-16T14:08:10+02:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.819502,
+            59.335113 
+          ],
+          [
+            27.819502,
+            59.335113 
+          ]
+        ]
+      }
+    }
+  ]
+}

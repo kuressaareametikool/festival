@@ -30,7 +30,9 @@ new Vue({
     counties: [
       "harjumaa",
       "hiiumaa",
+      "idavirumaa",
       "jogevamaa",
+      "jarvamaa",
       "laanemaa",
       "laanevirumaa",
       "parnumaa",
