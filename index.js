@@ -47,25 +47,22 @@ new Vue({
   },
   methods: {
     buffer: turf.buffer,
-    waypointsToGeoJSON,
-    onClick(i) {
-      console.log(i);
-    }
+    waypointsToGeoJSON
   },
   mounted() {
-    fetch(
-      `https://spreadsheets.google.com/feeds/list/${
-        this.id
-      }/od6/public/values?alt=json`
-    )
-      .then(res => res.json())
-      .then(res => {
-        this.markers = parseSheet(res).map(m => {
-          m.lat = parseFloat(m.lat);
-          m.lng = parseFloat(m.lng);
-          return m;
-        });
-      });
+    // fetch(
+    //   `https://spreadsheets.google.com/feeds/list/${
+    //     this.id
+    //   }/od6/public/values?alt=json`
+    // )
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     this.markers = parseSheet(res).map(m => {
+    //       m.lat = parseFloat(m.lat);
+    //       m.lng = parseFloat(m.lng);
+    //       return m;
+    //     });
+    //   });
 
     this.counties.forEach(c => {
       fetch(`./tracks/${c}.json`)
@@ -77,10 +74,35 @@ new Vue({
 
     fetch("./waypoints/waypoints.json")
       .then(res => res.json())
-      .then(res => (this.waypoints = res));
+      .then(res => {
+        this.waypoints = res.map(w => {
+          w.lat = parseFloat(w.lat);
+          w.lng = parseFloat(w.lng);
+          return w;
+        });
+      });
+  },
+  computed: {
+    waypointsWithCounty() {
+      return this.waypoints.slice(0, 10).map(w => {
+        w.county = "";
+        this.countiesData.forEach(c => {
+          if (
+            turf.intersect(
+              turf.buffer(turf.point([w.lng, w.lat]), 1),
+              turf.buffer(c.data.features[0], 1)
+            )
+          ) {
+            w.county = c.county;
+          }
+        });
+        return w;
+      });
+    }
   },
   template: `
   <div>
+    {{ waypointsWithCounty }}
     <Top />
     <Counties :counties="counties" @changeCounty="c => activeCounty = c" />
     <div style="display: flex">
