@@ -1,9 +1,21 @@
+:root {
+  --primary: #0000ff;
+  --secondary: #ff0000;
+  --third: #00ff00;
+  --fourth: rgb(255, 145, 0);
+  --black: #222222;
+  --white: #ffffff;
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  background: var(--white);
 }
 
 h1, h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
   margin-top: 0;
+ 
 }
+
