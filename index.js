@@ -1,5 +1,7 @@
 import { parseSheet, waypointsToGeoJSON } from "./utils.js";
 
+// Leaflet map components
+
 Vue.component("l-map", Vue2Leaflet.LMap);
 Vue.component("l-tile-layer", Vue2Leaflet.LTileLayer);
 Vue.component("l-marker", Vue2Leaflet.LMarker);
@@ -7,13 +9,15 @@ Vue.component("l-polyline", Vue2Leaflet.LPolyline);
 Vue.component("l-geo-json", Vue2Leaflet.LGeoJson);
 Vue.component("l-icon", Vue2Leaflet.LIcon);
 
+// Custom components
+
+import Top from "./components/Top.js";
+import Counties from "./components/Counties.js";
 import Event from "./components/Event.js";
 
-Vue.config.devtools = true;
-
 new Vue({
-  components: { Event },
   el: "#app",
+  components: { Top, Counties, Event },
   data: {
     url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
@@ -38,15 +42,15 @@ new Vue({
       "vorumaa"
     ],
     countiesData: [],
-    activeCounty: 'hiiumaa',
-    waypoints: [],
+    activeCounty: "hiiumaa",
+    waypoints: []
   },
   methods: {
     buffer: turf.buffer,
     waypointsToGeoJSON,
     onClick(i) {
       console.log(i);
-    },
+    }
   },
   mounted() {
     fetch(
@@ -67,17 +71,19 @@ new Vue({
       fetch(`./tracks/${c}.json`)
         .then(res => res.json())
         .then(res => {
-          this.countiesData.push({county: c, data: res});
+          this.countiesData.push({ county: c, data: res });
         });
     });
 
-    fetch('./waypoints/waypoints.json')
+    fetch("./waypoints/waypoints.json")
       .then(res => res.json())
-      .then(res => this.waypoints = res)
-    
+      .then(res => (this.waypoints = res));
   },
   template: `
-  <div style="display: flex">
+  <div>
+    <Top />
+    <Counties :counties="counties" @changeCounty="c => activeCounty = c" />
+    <div style="display: flex">
     <l-map style="height: 100vh; width: 80vw" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"/>
       
@@ -135,16 +141,10 @@ new Vue({
       </l-marker>
     </l-map>
     <div style="flex: 1">
-      <div
-        v-for="(county,i) in counties"
-        :key="i"
-        style="padding: 5px 10px; cursor: pointer;"
-        :style="{background: county == activeCounty ? '#ddeeff' : ''}"
-        @click="activeCounty = county"
-      >{{ county }}</div>
       <Event title="Hello" />
     </div>
     </div>
+  </div>
   </div>
   `
 });
