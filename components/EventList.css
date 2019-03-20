@@ -1,10 +1,17 @@
 .EventList {
-  padding: 15px;
-  height: 80vh;
+  height: calc(100vh - 75px);
   overflow: auto;
 }
 
+.EventList_header {
+	height: 64px;
+  background: url(../assets/background_blue.svg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .EventList__event {
-  padding-bottom: 15px;
+  padding: 15px;
   cursor: pointer;
 }

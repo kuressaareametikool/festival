@@ -1,5 +1,7 @@
 .Counties {
-  display: flex;
+  display: block;
+  background: url(../assets/background_blue.svg);
+	padding: 0px 0 7px 0;
 }
 
 .Counties__county {
