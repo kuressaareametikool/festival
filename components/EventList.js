@@ -1,13 +1,16 @@
 import { shorten } from '../utils.js'
 
 export default {
-  props: ['events'],
+  props: ['events', 'activeEvent'],
   methods: { shorten },
   template: `
     <div class="EventList">
-      <h3>Events</h3>
+      <div class="EventList_header">
+        <div>Events</div>
+      </div>
       <div
         class="EventList__event"
+        :style="{ background: activeEvent == event.ID ? 'var(--primary-light)' : ''}"
         v-for="(event,i) in events"
         :key="i"
         @click="$emit('changeEvent', event.ID)"
