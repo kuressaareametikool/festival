@@ -1,5 +1,8 @@
+import { shorten } from '../utils.js'
+
 export default {
   props: ['events'],
+  methods: { shorten },
   template: `
     <div class="EventList">
       <h3>Events</h3>
@@ -9,7 +12,8 @@ export default {
         :key="i"
         @click="$emit('changeEvent', event.ID)"
       >
-        <div>{{ event.name }}</div>
+        <div>{{ shorten(event.name) }}</div>
+        <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
       </div>
     </div>
   `

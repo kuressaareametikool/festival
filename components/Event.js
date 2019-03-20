@@ -6,9 +6,9 @@ export default {
     img2:
       "https://www.visitoslo.com/Images/Bilder%20Oslo/Hva%20skjer/Oya-Festival-2016-foto-Didrick-Stenersen.jpg?t=ScaleToFill%7c725x360&ts=iXZP7SIL7vNV0z15N6vgU3PqbaM%3d&pr=2"
   }),
+  // ⟨‹›⟩
   template: `
     <div class="Event">
-	
 				<div class="CloseEvent" @click="$emit('closeEvent')">&times;</div>
 				<!--div class="Event_image">
 					<img :src="img">

@@ -84,13 +84,8 @@ new Vue({
   template: `
   <div>
     <Top />
-    <Counties
-      :counties="counties"
-      @changeCounty="c => activeCounty = c"
-      :activeCounty="activeCounty"
-    />
     <div style="display: flex">
-    <l-map style="height: 100vh; width: 75vw" :zoom="zoom" :center="center">
+    <l-map style="height: 100vh; width: 60vw" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"/>
       
       <!-- Buffered geometry for debugging -->
@@ -153,17 +148,29 @@ new Vue({
     </l-map>
 
     <div style="flex: 1;">
+      <div style="display: flex">
+      <Counties
+        v-if="false"
+        style="flex: 1;"
+        :counties="counties"
+        @changeCounty="c => activeCounty = c"
+        :activeCounty="activeCounty"
+      />
       <EventList
-        v-if="!activeEventId"
+        style="flex: 1;"
+        v-if="true"
         :events="waypoints.filter(w => w.county == activeCounty)"
         @changeEvent="id => activeEventId = id"
       />
       <Event
-        v-if="activeEventId"
+        style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
+        v-if="true"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         @closeEvent="() => activeEventId = null"
       />
+      </div>
     </div>
+
     <!-- </div> -->
   </div>
   </div>

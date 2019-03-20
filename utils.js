@@ -30,3 +30,6 @@ export const waypointsToGeoJSON = waypoints => {
 
 export const flatten = list =>
   list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+
+export const shorten = (str, length = 50, suffix = "...") =>
+  `${str.slice(0, length)}${str.length - 1 > length ? suffix : ""}`;
