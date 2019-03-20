@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0075af;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>marker-fire__24x24</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_3" data-name="Layer 3">
+      <circle class="cls-1" cx="12" cy="12" r="12"/>
+      <path class="cls-2" d="M14.25,5.77S18.36,9,18.36,13.22s-2.91,6.66-6.2,6.66-6.52-3-6.52-6S8.53,10.16,9.36,3.11c0,0,4,3.55,4.22,5.83Z"/>
+    </g>
+  </g>
+</svg>
