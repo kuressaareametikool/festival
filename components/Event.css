@@ -22,9 +22,8 @@
 	  background: url(../assets/background_blue.svg);
 	padding: 0px 0 7px 0;
 }
-.Event_image>img {
-	filter: grayscale(100%);
-	/*filter: brown(50%); idk which code paints it brown*/
+.Event_image {
+	filter: sepia(100%);
 }
 .EventInfo {
 	display: flex;
