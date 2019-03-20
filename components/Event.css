@@ -23,7 +23,8 @@
 	padding: 0px 0 7px 0;
 }
 .Event_image>img {
-	filter: sepia(60%);
+	filter: grayscale(100%);
+	/*filter: brown(50%); idk which code paints it brown*/
 }
 .EventInfo {
 	display: flex;

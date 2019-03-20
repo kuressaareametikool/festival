@@ -5,7 +5,7 @@ export default {
 	
 				<div class="CloseEvent" @click="$emit('closeEvent')">&times;</div>
 				<div class="Event_image">
-					<img src="https://2019.laulupidu.ee/wp-content/uploads/1969.jpg">
+					<img src="https://2019.laulupidu.ee/wp-content/uploads/2014-peo-galeriid/XXVI-Laulupeo-II-kontsert/Aivar-Pihelgas/Pildid/D4R1066-255x190.jpg">
 				</div>
       <div class="EventInfo">
       	<div class="EventInfo_date">
