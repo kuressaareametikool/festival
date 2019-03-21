@@ -33,3 +33,11 @@ export const flatten = list =>
 
 export const shorten = (str, length = 50, suffix = "...") =>
   `${str.slice(0, length)}${str.length - 1 > length ? suffix : ""}`;
+
+export const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+
+export const any = function(arr) {
+  return arr instanceof Array
+    ? shuffle(arr)[0]
+    : shuffle(Array.from(arguments))[0];
+};
