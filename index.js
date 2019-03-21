@@ -1,4 +1,4 @@
-import { parseSheet, waypointsToGeoJSON } from "./utils.js";
+import { parseSheet, waypointsToGeoJSON, shorten } from "./utils.js";
 
 // Leaflet map components
 
@@ -8,6 +8,7 @@ Vue.component("l-marker", Vue2Leaflet.LMarker);
 Vue.component("l-polyline", Vue2Leaflet.LPolyline);
 Vue.component("l-geo-json", Vue2Leaflet.LGeoJson);
 Vue.component("l-icon", Vue2Leaflet.LIcon);
+Vue.component('l-tooltip', Vue2Leaflet.LTooltip)
 
 // Custom components
 
@@ -53,7 +54,8 @@ new Vue({
   },
   methods: {
     buffer: turf.buffer,
-    waypointsToGeoJSON
+    waypointsToGeoJSON,
+    shorten
   },
   mounted() {
     this.$nextTick(() => {
@@ -143,6 +145,7 @@ new Vue({
         :key="'l4' + i"
         :lat-lng="[w.lat,w.lng]"
       >
+        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
           icon-url="markers/marker-donut_blue_light.png"
           :icon-size="[ iconSizes[zoom] * 18 / 2, iconSizes[zoom] * 18 / 2 ]"
