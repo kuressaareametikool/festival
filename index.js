@@ -136,7 +136,22 @@ new Vue({
         :optionsStyle="{ color: '#0084b2', opacity: county.county == activeCounty ? 1 : 0.2 }"
       />
 
-      <!--Waypoint data-->
+      <!--Waypoint data, active county -->
+      
+      <l-marker
+        v-if="waypoints.length"
+        v-for="(w,i) in waypoints.filter(w => w.county !== activeCounty)"
+        :key="'l4' + i"
+        :lat-lng="[w.lat,w.lng]"
+      >
+        <l-icon
+          icon-url="markers/marker-donut_blue_light.png"
+          :icon-size="[ iconSizes[zoom] * 18 / 2, iconSizes[zoom] * 18 / 2 ]"
+          :icon-anchor="[ iconSizes[zoom] * 18/4, iconSizes[zoom] * 18/4 ]"
+        />
+      </l-marker>
+
+      <!--Waypoint data, active county -->
       
       <l-marker
         v-if="waypoints.length"
@@ -144,11 +159,6 @@ new Vue({
         :key="'l4' + i"
         :lat-lng="[w.lat,w.lng]"
       >
-        <!-- <l-icon
-          :icon-url="w.icon ? w.icon : ''"
-          :icon-size="[44 / 2,51 / 2]"
-          :icon-anchor="[44 / 2 / 2, 51 / 2]"
-        /> -->
         <l-icon
           :icon-url="zoom > 8 ? 'markers/Marker_event2_BG@2x.png' : 'markers/marker-donut-red.png'"
           :icon-size="[ iconSizes[zoom] * 18, iconSizes[zoom] * 18 ]"
