@@ -8,6 +8,9 @@ export default {
   },
   template: `
   <div class="Counties">
+    <div class="Counties_toolbar">
+      <div>Maakonnad</div>
+    </div>
     <div
       v-for="(county,i) in counties"
       :key="i"
@@ -15,14 +18,16 @@ export default {
       :class="{Counties__county__active: localActiveCounty == county}"
       @click="localActiveCounty = county; $emit('changeCounty', county)"
       style="margin-right: 20px;"
+      :style="{opacity: i >= 2 ? 1 : 0.25}"
     >
       <div 
         style="margin-right: 10px; width: 24px; height: 24px;"
       >
         <img
-          v-if="localActiveCounty == county"
+          v-if="i <= 2"
           style="width: 24px; height: 24px;"
-          src="markers/marker-torch__24x24@2x.png"
+          :style="{filter: i == 2 ? '' : 'grayscale(100%)'}"
+          src="markers/marker-torch_brown@2x.png"
         />
       </div>
       <div style="

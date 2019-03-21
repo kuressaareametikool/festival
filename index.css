@@ -46,5 +46,20 @@ h1, h2, h3, h4 {
 }
 
 img {
-	width: 100%;
+  width: 100%;
+  display: block;
+}
+
+/* Transitions */
+
+.fade-enter-active {
+  transition: all 0.1s linear;
+}
+
+.fade-leave-active {
+  transition: all .1s linear;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

@@ -8,7 +8,7 @@ export default {
       <div class="EventList_toolbar">
         <div @click="$emit('back')">Back</div>
         <div @click="$emit('back')">{{ activeCounty }}</div>
-        <div>⟨ ⟩</div>
+        <div style="opacity: 0.3">⟨ ⟩</div>
       </div>
       <div
         class="EventList__event"

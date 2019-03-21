@@ -32,7 +32,7 @@ new Vue({
     id: "19Xj62Df8IvP-yLDpMKEWknR-ytazmbIwAIJptxHPZgA",
     value: null,
     counties: [
-      "eesti",
+      //"eesti",
       "saaremaa",
       "hiiumaa",
       "laanemaa",
@@ -70,7 +70,7 @@ new Vue({
     iconSizes: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 2, 2, 2, 3, 3, 3],
     countiesData: [],
     waypoints: [],
-    activeCounty: "hiiumaa",
+    activeCounty: "laanemaa",
     activeEventId: null,
     activePanel: "counties"
   },
@@ -127,6 +127,9 @@ new Vue({
       :zoom="zoom"
       :center="center"
       @update:zoom="z => zoom = z"
+      :zoomAnimation="true"
+      :fadeAnimation="true"
+      :markerZoomAnimation="true"
     >
       <l-tile-layer :url="url"/>
       
@@ -164,7 +167,10 @@ new Vue({
         v-for="(county,i) in countiesData"
         :key="'l3' + i"
         :geojson="county.data"
-        :optionsStyle="{ color: 'var(--fourth)', opacity: county.county == activeCounty ? 1 : 0.5 }"
+        :optionsStyle="{
+          color: i >= 2 ? 'var(--fourth)' : '#777',
+          opacity: county.county == activeCounty ? 1 : 0.75
+        }"
       />
 
       <l-circle-marker
@@ -222,6 +228,7 @@ new Vue({
 
     <div style="flex: 1;">
       <div style="display: flex">
+      <transition appear name="fade" mode="out-in">
       <Counties
         v-if="activePanel == 'counties'"
         style="flex: 1;"
@@ -245,6 +252,7 @@ new Vue({
         :activeCounty="activeCounty"
         @back="activePanel = 'eventlist'; zoom = 9; center = centers[activeCounty]"
       />
+      </transition>
       </div>
     </div>
 
