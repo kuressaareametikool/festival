@@ -61,7 +61,8 @@ new Vue({
       laanevirumaa: [59.23, 26.38],
       polvamaa: [58.08, 27.12],
       raplamaa: [58.93, 24.66],
-      viljandimaa: [58.33, 25.57]
+      viljandimaa: [58.33, 25.57],
+      tartumaa: [58.39, 26.73],
     },
     iconSizes: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 2, 2, 2, 3, 3, 3],
     countiesData: [],
