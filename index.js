@@ -1,4 +1,4 @@
-import { parseSheet, waypointsToGeoJSON } from "./utils.js";
+import { parseSheet, waypointsToGeoJSON, any } from "./utils.js";
 
 // Leaflet map components
 
@@ -53,27 +53,28 @@ new Vue({
   },
   methods: {
     buffer: turf.buffer,
-    waypointsToGeoJSON
+    waypointsToGeoJSON,
+    any
   },
   mounted() {
     this.$nextTick(() => {
       console.log(this.$refs.map.mapObject.zoom);
     })
-    // fetch(
-    //   `https://spreadsheets.google.com/feeds/list/${
-    //     this.id
-    //   }/od6/public/values?alt=json`
-    // )
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     this.markers = parseSheet(res).map(m => {
-    //       m.lat = parseFloat(m.lat);
-    //       m.lng = parseFloat(m.lng);
-    //       return m;
-    //     });
-    //   });
+    fetch(
+      `https://spreadsheets.google.com/feeds/list/${
+        this.id
+      }/od6/public/values?alt=json`
+    )
+      .then(res => res.json())
+      .then(res => {
+        this.markers = parseSheet(res).map(m => {
+          m.lat = parseFloat(m.lat);
+          m.lng = parseFloat(m.lng);
+          return m;
+        });
+      });
 
-    this.counties.forEach(c => {
+    this.counties.filter(c => c !== 'eesti').forEach(c => {
       fetch(`./tracks/${c}.json`)
         .then(res => res.json())
         .then(res => {
@@ -88,7 +89,6 @@ new Vue({
   template: `
   <div>
     <Top />
-    {{ zoom }}
     <div style="display: flex">
     <l-map
       ref="map"
@@ -118,13 +118,18 @@ new Vue({
       
       <!-- Fake data from Google Sheets -->
       
-      <!--l-marker
+      <l-marker
         v-if="markers.length"
         v-for="(m,i) in markers"
         :key="'l2' + i"
         :lat-lng="[m.lat,m.lng]"
-        @click="onClick(i)"
-      /-->
+      >
+        <l-icon
+          :icon-url="any('markers/marker-sight.png','markers/marker-picture24x24x2.png')"
+          :icon-size="[ iconSizes[zoom] * 18, iconSizes[zoom] * 18 ]"
+          :icon-anchor="[ iconSizes[zoom] * 18 /2, iconSizes[zoom] * 18 /2 ]"
+        />
+      </l-marker>
       
       <!--Tracks data -->
 
