@@ -8,8 +8,7 @@ Vue.component("l-marker", Vue2Leaflet.LMarker);
 Vue.component("l-polyline", Vue2Leaflet.LPolyline);
 Vue.component("l-geo-json", Vue2Leaflet.LGeoJson);
 Vue.component("l-icon", Vue2Leaflet.LIcon);
-Vue.component('l-tooltip', Vue2Leaflet.LTooltip)
-Vue.component('l-popup', Vue2Leaflet.LPopup)
+Vue.component("l-tooltip", Vue2Leaflet.LTooltip);
 
 // Custom components
 
@@ -45,29 +44,29 @@ new Vue({
       "idavirumaa",
       "laanevirumaa",
       "jarvamaa",
-      "harjumaa",  
+      "harjumaa"
     ],
     centers: {
-      'hiiumaa': [58.87,22.67],
-      'saaremaa': [58.37,22.46],
-      'harjumaa': [59.35,24.93],
-      'valgamaa': [57.86,26.23],
-      'vorumaa': [57.89,27.01],
-      'parnumaa': [58.45,24.52],
-      'idavirumaa': [29.23,27.42],
-      'jarvamaa': [58.90,25.63],
-      'laanemaa': [58.95,23.81],
-      'laanevirumaa': [59.23,26.38],
-      'polvamaa': [58.08,27.12],
-      'raplamaa': [58.93,24.66],
-      'viljandimaa': [58.33,25.57]
+      hiiumaa: [58.87, 22.67],
+      saaremaa: [58.37, 22.46],
+      harjumaa: [59.35, 24.93],
+      valgamaa: [57.86, 26.23],
+      vorumaa: [57.89, 27.01],
+      parnumaa: [58.45, 24.52],
+      idavirumaa: [29.23, 27.42],
+      jarvamaa: [58.9, 25.63],
+      laanemaa: [58.95, 23.81],
+      laanevirumaa: [59.23, 26.38],
+      polvamaa: [58.08, 27.12],
+      raplamaa: [58.93, 24.66],
+      viljandimaa: [58.33, 25.57]
     },
-    iconSizes: [1,1,1,1,1,1,1,1,1,1.5,1.5,2,2,2,3,3,3],
+    iconSizes: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 2, 2, 2, 3, 3, 3],
     countiesData: [],
     waypoints: [],
     activeCounty: "hiiumaa",
     activeEventId: null,
-    activePanel: 'counties',
+    activePanel: "counties"
   },
   methods: {
     buffer: turf.buffer,
@@ -77,15 +76,15 @@ new Vue({
   computed: {
     activeEvent() {
       if (this.activeEventId) {
-        return this.waypoints.filter(w => w.ID == this.activeEventId)[0]
+        return this.waypoints.filter(w => w.ID == this.activeEventId)[0];
       }
-      return null
+      return null;
     }
   },
   mounted() {
     this.$nextTick(() => {
       console.log(this.$refs.map.mapObject.zoom);
-    })
+    });
     // fetch(
     //   `https://spreadsheets.google.com/feeds/list/${
     //     this.id
@@ -201,7 +200,7 @@ new Vue({
         v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 10 }"
+        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 9; center = centers[activeCounty] }"
         :activeCounty="activeCounty"
       />
       <EventList
@@ -210,7 +209,7 @@ new Vue({
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
         :activeCounty="activeCounty"
-        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 15; center = [activeEvent.lat,activeEvent.lng] }"
+        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 12; center = [activeEvent.lat,activeEvent.lng] }"
         @back="activePanel = 'counties'; zoom = 7"
       />
       <Event
@@ -218,7 +217,7 @@ new Vue({
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         :activeCounty="activeCounty"
-        @back="activePanel = 'eventlist'; zoom = 10"
+        @back="activePanel = 'eventlist'; zoom = 9; center = centers[activeCounty]"
       />
       </div>
     </div>
