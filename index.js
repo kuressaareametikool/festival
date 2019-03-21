@@ -88,7 +88,6 @@ new Vue({
   template: `
   <div>
     <Top />
-    {{ zoom }}
     <div style="display: flex">
     <l-map
       ref="map"
