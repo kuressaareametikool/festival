@@ -132,7 +132,7 @@ new Vue({
         v-for="(county,i) in countiesData"
         :key="'l3' + i"
         :geojson="county.data"
-        :optionsStyle="{ color: '#0084b2', opacity: county.county == activeCounty ? 1 : 0.2 }"
+        :optionsStyle="{ color: 'var(--fourth)', opacity: county.county == activeCounty ? 1 : 0.5 }"
       />
 
       <!--Waypoint data, active county -->
