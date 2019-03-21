@@ -227,6 +227,20 @@ new Vue({
         />
       </l-marker>
 
+      <l-marker
+        v-if="waypoints.length"
+        v-for="(w,i) in waypoints.filter(w => w.ID == '66131')"
+        :key="'l7' + i"
+        :lat-lng="[w.lat,w.lng]"
+        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 12; center = [w.lat,w.lng]"
+      >
+        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
+        <l-icon
+          icon-url="markers/marker-torch_brown@2x.png"
+          :icon-size="[ iconSizes[zoom] * 24 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 24 * (activeEventId == w.ID ? 1.5 : 1) ]"
+          :icon-anchor="[ iconSizes[zoom] * 24/2, iconSizes[zoom] * 24/2 ]"
+        />
+      </l-marker>
 
       <!--Waypoint data, inactive county -->
       <!--
