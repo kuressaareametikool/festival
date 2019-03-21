@@ -12,12 +12,9 @@ export default {
       v-for="(county,i) in counties"
       :key="i"
       class="Counties__county"
-      :style="{background: localActiveCounty == county ? '#fff' : ''}"
+      :style="{background: localActiveCounty == county ? '#ddeeff' : ''}"
       @click="localActiveCounty = county; $emit('changeCounty', county)"
-    >
-      <div>{{ county }}</div>
-      <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
-    </div>
+    >{{ county }}</div>
   </div>
   `
 };

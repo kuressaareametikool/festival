@@ -1,0 +1,8 @@
+.Counties {
+  display: flex;
+}
+
+.Counties__county {
+  padding: 5px 10px;
+  cursor: pointer;
+}
