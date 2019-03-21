@@ -87,25 +87,15 @@ new Vue({
   template: `
   <div>
     <Top />
-<<<<<<< HEAD
     {{ zoom }}
-    <Counties
-      :counties="counties"
-      @changeCounty="c => activeCounty = c"
-      :activeCounty="activeCounty"
-    />
     <div style="display: flex">
     <l-map
       ref="map"
-      style="height: 100vh; width: 75vw"
+      style="height: 100vh; width: 50vw"
       :zoom="zoom"
       :center="center"
       @update:zoom="z => zoom = z"
     >
-=======
-    <div style="display: flex">
-    <l-map style="height: 100vh; width: 50vw" :zoom="zoom" :center="center">
->>>>>>> master
       <l-tile-layer :url="url"/>
       
       <!-- Buffered geometry for debugging -->
