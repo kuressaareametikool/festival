@@ -185,6 +185,7 @@ new Vue({
         style="flex: 1;"
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
+        :activeCounty="activeCounty"
         @changeEvent="id => { activeEventId = id; activePanel = 'event' }"
         @back="activePanel = 'counties'"
       />

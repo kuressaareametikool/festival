@@ -1,12 +1,14 @@
 import { shorten } from '../utils.js'
 
 export default {
-  props: ['events', 'activeEvent'],
+  props: ['events', 'activeEvent', 'activeCounty'],
   methods: { shorten },
   template: `
     <div class="EventList">
       <div class="EventList_toolbar">
         <div @click="$emit('back')">Back</div>
+        {{ activeCounty }}
+        <div>...</div>
       </div>
       <div
         class="EventList__event"
