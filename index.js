@@ -59,6 +59,14 @@ new Vue({
     waypointsToGeoJSON,
     shorten
   },
+  computed: {
+    activeEvent() {
+      if (this.activeEventId) {
+        return this.waypoints.filter(w => w.ID == this.activeEventId)[0]
+      }
+      return null
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       console.log(this.$refs.map.mapObject.zoom);
@@ -160,7 +168,7 @@ new Vue({
       <l-marker
         v-if="waypoints.length"
         v-for="(w,i) in waypoints.filter(w => w.county == activeCounty)"
-        :key="'l4' + i"
+        :key="'l5' + i"
         :lat-lng="[w.lat,w.lng]"
       >
         <l-icon
@@ -178,7 +186,7 @@ new Vue({
         v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist' }"
+        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 10 }"
         :activeCounty="activeCounty"
       />
       <EventList
@@ -186,15 +194,16 @@ new Vue({
         style="flex: 1;"
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
-        @changeEvent="id => { activeEventId = id; activePanel = 'event' }"
-        @back="activePanel = 'counties'"
+        :activeCounty="activeCounty"
+        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 15; center = [activeEvent.lat,activeEvent.lng] }"
+        @back="activePanel = 'counties'; zoom = 7"
       />
       <Event
         v-if="activePanel == 'event'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
-        @closeEvent="() => activeEventId = null"
-        @back="activePanel = 'eventlist'"
+        :activeCounty="activeCounty"
+        @back="activePanel = 'eventlist'; zoom = 10"
       />
       </div>
     </div>
