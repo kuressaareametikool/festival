@@ -1,5 +1,5 @@
 export default {
-  props: ["event"],
+  props: ["event", "activeCounty"],
   data: () => ({
     img:
       "https://2019.laulupidu.ee/wp-content/uploads/2014-peo-galeriid/XXVI-Laulupeo-II-kontsert/Aivar-Pihelgas/Pildid/D4R1066-255x190.jpg",
@@ -11,6 +11,8 @@ export default {
     <div class="Event">
         <div class="Event_toolbar">
           <div @click="$emit('back')">Back</div>
+          <div @click="$emit('back')">{{ activeCounty }}</div>
+          <div>...</div>
         </div>
         <div
         :style="{

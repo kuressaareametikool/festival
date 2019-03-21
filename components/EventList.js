@@ -7,7 +7,7 @@ export default {
     <div class="EventList">
       <div class="EventList_toolbar">
         <div @click="$emit('back')">Back</div>
-        {{ activeCounty }}
+        <div @click="$emit('back')">{{ activeCounty }}</div>
         <div>...</div>
       </div>
       <div

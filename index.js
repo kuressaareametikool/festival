@@ -159,7 +159,7 @@ new Vue({
       <l-marker
         v-if="waypoints.length"
         v-for="(w,i) in waypoints.filter(w => w.county == activeCounty)"
-        :key="'l4' + i"
+        :key="'l5' + i"
         :lat-lng="[w.lat,w.lng]"
       >
         <l-icon
@@ -193,6 +193,7 @@ new Vue({
         v-if="activePanel == 'event'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
+        :activeCounty="activeCounty"
         @closeEvent="() => activeEventId = null"
         @back="activePanel = 'eventlist'"
       />
