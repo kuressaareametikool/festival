@@ -1,47 +1,39 @@
 .Top {
-  height: 60px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: var(--base);
-  padding-top: var(--base2);
-  padding-bottom: calc( var(--base)/2 );
+  padding: var(--base2);
+  padding-top: var(--base3);
   background: var(--white);
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAKCAYAAABWiWWfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHVJREFUeNpinGWtdoGBgUGfgTLwEYj7mICEAxBfpNAgh9QjN5uYgMQHCgyEGQTyHQPIZQxkGohiENwwMgzEMAjFMBIMxGoQhmFEGIjTIKyG4TEQr0EgwPj//3+c/pltoy4ApA4AsQIhgwgahmSgAiGDQAAgwAAWwkdv1Ys6OAAAAABJRU5ErkJggg==);
   background-repeat: repeat-x;
   background-position: 0 0;
-  
 }
 
 .Top__logo img {
   display: block;
-  width: auto;
-  height: 75px;
-  z-index: 9999;
-  position: fixed;
-  top:12px;
-
 }
 .Top__heading {
   display: flex;
-  /*flex-direction: column;*/
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
- 
-
 }
 .Top__heading>h1 {
   margin: var(--base) 0 var(--base) 0;
   font-family: 'TTTravels', sans-serif;
-  font-size: var(--base4);
+  font-size: var(--base6);
   line-height: 1;
   color: var(--secondary);
 }
 .Top__heading>h2 {
   margin: 0;
   font-family: 'TTTravels', sans-serif;
-  font-size: var(--base2);
+  font-size: var(--base3);
   line-height: 1;
   color: var(--secondary);
-  margin-left: 2vw;
+}
+
+.Top__social {
+  
 }
