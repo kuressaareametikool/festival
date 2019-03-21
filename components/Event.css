@@ -1,27 +1,19 @@
 .Event {
-	background: url(../assets/background_blue.svg);
-  background-repeat: no-repeat;
-  /*background-size: cover;
-  background-position: -40px -55px;*/
-  /* background-size: 30vw 60vh; */
-  /* background-position: 0 0; */
   height: 100vh;
 }
-.CloseEvent {
-	text-align: right;
+
+.Event_toolbar {
+	background: url(../assets/background_blue.svg);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
 	color: white;
-	padding: 10px;
-	font-weight: 700;
-	font-size: 2rem;
+	width: 100%;
 	cursor: pointer;
 }
-.Event_image {
-	/* height: 30vh;
-	background-size: cover;
-	  background-position: center center; */
-	  background: url(../assets/background_blue.svg);
-	padding: 0px 0 7px 0;
-}
+
 .Event_image {
 	filter: sepia(100%);
 }

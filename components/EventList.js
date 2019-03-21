@@ -5,8 +5,8 @@ export default {
   methods: { shorten },
   template: `
     <div class="EventList">
-      <div class="EventList_header">
-        <div>Events</div>
+      <div class="EventList_toolbar">
+        <div @click="$emit('back')">Back</div>
       </div>
       <div
         class="EventList__event"

@@ -3,6 +3,18 @@
   overflow: auto;
 }
 
+.EventList_toolbar {
+	background: url(../assets/background_blue.svg);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	color: white;
+	width: 100%;
+	cursor: pointer;
+}
+
 .EventList_header {
 	height: 64px;
   background: url(../assets/background_blue.svg);
