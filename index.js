@@ -55,7 +55,7 @@ new Vue({
       valgamaa: [57.86, 26.23],
       vorumaa: [57.89, 27.01],
       parnumaa: [58.45, 24.52],
-      idavirumaa: [29.23, 27.42],
+      idavirumaa: [59.23, 27.42],
       jarvamaa: [58.9, 25.63],
       laanemaa: [58.95, 23.81],
       laanevirumaa: [59.23, 26.38],
