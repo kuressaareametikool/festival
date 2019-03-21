@@ -2,7 +2,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #e4e9ec;
+        fill: #c3d0d9;
       }
 
       .cls-2 {
@@ -13,10 +13,8 @@
   <title>marker-donut_blue_light</title>
   <g id="Layer_2" data-name="Layer 2">
     <g id="Layer_1-2" data-name="Layer 1">
-      <g>
-        <circle class="cls-1" cx="12" cy="12" r="12"/>
-        <circle class="cls-2" cx="12" cy="12" r="5"/>
-      </g>
+      <circle class="cls-1" cx="12" cy="12" r="12"/>
+      <circle class="cls-2" cx="12" cy="12" r="5"/>
     </g>
   </g>
 </svg>
