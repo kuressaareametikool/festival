@@ -11,6 +11,7 @@ Vue.component("l-icon", Vue2Leaflet.LIcon);
 Vue.component("l-tooltip", Vue2Leaflet.LTooltip);
 Vue.component('l-tooltip', Vue2Leaflet.LTooltip)
 Vue.component('l-popup', Vue2Leaflet.LPopup)
+Vue.component('l-circle-marker', Vue2Leaflet.LCircleMarker)
 
 // Custom components
 
@@ -166,8 +167,25 @@ new Vue({
         :optionsStyle="{ color: 'var(--fourth)', opacity: county.county == activeCounty ? 1 : 0.5 }"
       />
 
-      <!--Waypoint data, active county -->
-      
+      <l-circle-marker
+        v-if="waypoints.length"
+        v-for="(w,i) in waypoints.filter(w => w.county !== activeCounty)"
+        :key="'l4' + i"
+        :lat-lng="[w.lat,w.lng]"
+        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
+        :fill="true"
+        radius="2"
+        color="var(--fourth)"
+        fillColor="white"
+        fillOpacity="1"
+        weight="1"
+        opacity="0.5"
+      >
+        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
+      </l-circle-marker>
+
+      <!--Waypoint data, inactive county -->
+      <!--
       <l-marker
         v-if="waypoints.length"
         v-for="(w,i) in waypoints.filter(w => w.county !== activeCounty)"
@@ -182,7 +200,7 @@ new Vue({
           :icon-anchor="[ iconSizes[zoom] * 18/4, iconSizes[zoom] * 18/4 ]"
         />
       </l-marker>
-
+      -->
       <!--Waypoint data, active county -->
       
       <l-marker
