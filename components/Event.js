@@ -12,7 +12,7 @@ export default {
         <div class="Event_toolbar">
           <div @click="$emit('back')">Back</div>
           <div @click="$emit('back')">{{ activeCounty }}</div>
-          <div>...</div>
+          <div>⟨ ⟩</div>
         </div>
         <div
         :style="{
