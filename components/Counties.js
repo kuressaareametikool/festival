@@ -12,11 +12,20 @@ export default {
       v-for="(county,i) in counties"
       :key="i"
       class="Counties__county"
-      :style="{background: localActiveCounty == county ? '#fff' : ''}"
+      :class="{Counties__county__active: localActiveCounty == county}"
       @click="localActiveCounty = county; $emit('changeCounty', county)"
+      style="margin-right: 20px;"
     >
-      <div>{{ county }}</div>
-      <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
+      <div style="margin-right: 10px; width: 18px; height: 18px;"><img v-if="localActiveCounty == county" style="width: 18px; height: 18px;" src="markers/marker-torch__24x24@2x.png" /></div>
+      <div style="
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      ">
+        <div>{{ county }}</div>
+        <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
+      </div>
     </div>
   </div>
   `

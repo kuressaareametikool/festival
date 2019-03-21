@@ -1,10 +1,16 @@
 .Counties {
-  display: block;
-  background: url(../assets/background_blue.svg);
 	padding: 0px 0 7px 0;
 }
 
 .Counties__county {
   padding: 5px 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #777;
+}
+
+.Counties__county__active {
+  --background: url(../assets/background_blue.svg);
+  color: #333;
 }

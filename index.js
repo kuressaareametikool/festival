@@ -174,12 +174,12 @@ new Vue({
         :lat-lng="[w.lat,w.lng]"
         @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
         :fill="true"
-        radius="2"
+        :radius="2"
         color="var(--fourth)"
         fillColor="white"
-        fillOpacity="1"
-        weight="1"
-        opacity="0.5"
+        :fillOpacity="1"
+        :weight="1"
+        :opacity="0.5"
       >
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
       </l-circle-marker>
