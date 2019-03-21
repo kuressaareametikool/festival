@@ -22,8 +22,8 @@ html {
   --white: #fffaf7;
 
   --base: 8px;
-  --base2: calc(var(--base) * 2);
-  --base3: calc(var(--base) * 3);
+  --base2: calc(var(--base) * 1.75);
+  --base3: calc(var(--base) * 2.5);
   --base4: calc(var(--base) * 4);
   --base5: calc(var(--base) * 5);
   --base6: calc(var(--base) * 6);

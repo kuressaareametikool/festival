@@ -12,6 +12,7 @@ Vue.component("l-tooltip", Vue2Leaflet.LTooltip);
 Vue.component('l-tooltip', Vue2Leaflet.LTooltip)
 Vue.component('l-popup', Vue2Leaflet.LPopup)
 Vue.component('l-circle-marker', Vue2Leaflet.LCircleMarker)
+Vue.component('l-control-zoom', Vue2Leaflet.LControlZoom)
 
 // Custom components
 
@@ -126,14 +127,16 @@ new Vue({
     <l-map
       style="z-index: -100000;"
       ref="map"
-      style="height: 100vh; width: 75vw"
+      style="height: calc(100vh - 60px); width: 75vw"
       :zoom="zoom"
       :center="center"
-      @update:zoom="z => zoom = z"
+      @update:zoom="newZoom => zoom = newZoom"
       :zoomAnimation="true"
       :fadeAnimation="true"
       :markerZoomAnimation="true"
+      :options="{zoomControl: false}"
     >
+      <l-control-zoom position="bottomright"></l-control-zoom>
       <l-tile-layer :url="url"/>
       
       <!-- Buffered geometry for debugging -->
@@ -171,8 +174,8 @@ new Vue({
         :key="'l3' + i"
         :geojson="county.data"
         :optionsStyle="{
-          color: i >= 2 ? 'var(--fourth)' : '#777',
-          opacity: county.county == activeCounty ? 1 : 0.75
+          color: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 'var(--fourth)' : '#777',
+          opacity: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 1 : 0.5
         }"
       />
 
