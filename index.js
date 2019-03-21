@@ -260,6 +260,9 @@ new Vue({
       </transition>
     </div>
 
+    <div style="transform: scale(1.5); transform-origin: 0 20px; position: fixed; left: 20px; bottom: 20px; z-index: 1000000;">
+        <img src="assets/kihid_menu.svg" />
+      </div>
     <!-- </div> -->
   </div>
   </div>
