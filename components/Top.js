@@ -9,7 +9,7 @@ export default {
     <div class="Top__heading">
       <h1>Tuletulemine</h1>
       <h2>1.juuni - 4.juuli 2019</h2>
-    </div>
+   	</div>
     <div class="Top__social">
       Daa
     </div>
