@@ -11,6 +11,7 @@ export default {
     <div class="Event">
         <div class="Event_toolbar">
           <div @click="$emit('back')">Back</div>
+          <div>⟨ ⟩</div>
         </div>
         <div
         :style="{

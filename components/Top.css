@@ -30,7 +30,7 @@
 .Top__heading>h1 {
   margin: var(--base) 0 var(--base) 0;
   font-family: 'TTTravels', sans-serif;
-  font-size: var(--base4);
+  font-size: var(--base2);
   line-height: 1;
   color: var(--secondary);
 }
