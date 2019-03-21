@@ -168,6 +168,7 @@ new Vue({
         v-for="(w,i) in waypoints.filter(w => w.county !== activeCounty)"
         :key="'l4' + i"
         :lat-lng="[w.lat,w.lng]"
+        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
       >
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
@@ -184,10 +185,12 @@ new Vue({
         v-for="(w,i) in waypoints.filter(w => w.county == activeCounty)"
         :key="'l5' + i"
         :lat-lng="[w.lat,w.lng]"
+        @click="activeEventId = w.ID; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
       >
+        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
           :icon-url="zoom > 8 ? 'markers/Marker_event2_BG@2x.png' : 'markers/marker-donut-red.png'"
-          :icon-size="[ iconSizes[zoom] * 18, iconSizes[zoom] * 18 ]"
+          :icon-size="[ iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1) ]"
           :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
         />
       </l-marker>
@@ -209,7 +212,7 @@ new Vue({
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
         :activeCounty="activeCounty"
-        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 12; center = [activeEvent.lat,activeEvent.lng] }"
+        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 10; center = [activeEvent.lat,activeEvent.lng] }"
         @back="activePanel = 'counties'; zoom = 7"
       />
       <Event
