@@ -12,6 +12,11 @@
 
 .Top__logo img {
   display: block;
+  width: auto;
+  height: 75px;
+  z-index: 9999;
+  position: fixed;
+  top:12px;
 }
 .Top__heading {
   display: flex;
