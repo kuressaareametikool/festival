@@ -63,6 +63,7 @@ new Vue({
       raplamaa: [58.93, 24.66],
       viljandimaa: [58.33, 25.57],
       tartumaa: [58.39, 26.73],
+      jogevamaa: [58.74, 26.49],
     },
     iconSizes: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 2, 2, 2, 3, 3, 3],
     countiesData: [],
