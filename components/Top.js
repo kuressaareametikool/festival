@@ -7,8 +7,8 @@ export default {
       alt="" />
     </div>
     <div class="Top__heading">
-      <h1>Tuletulemine</h1>
-      <h2>1.juuni - 4.juuli 2019</h2>
+      <h1>Tuletulemine 1.juuni - 4.juuli 2019</h1>
+     <!-- <h2>1.juuni - 4.juuli 2019</h2>-->
    	</div>
     <div class="Top__social">
       <img src="/assets/logo_fb.png" />
