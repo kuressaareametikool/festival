@@ -139,7 +139,7 @@ new Vue({
           :icon-anchor="[44 / 2 / 2, 51 / 2]"
         /> -->
         <l-icon
-          :icon-url="Math.floor(Math.random()*2) == 0 ? 'markers/marker-donut-blue.png' : 'markers/marker-donut-red.png'"
+          :icon-url="zoom > 10 ? 'markers/Marker_event2_BG@2x.png' : 'markers/marker-donut-red.png'"
           :icon-size="[ 18, 18 ]"
           :icon-anchor="[ 18/2, 18/2 ]"
         />
