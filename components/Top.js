@@ -7,7 +7,7 @@ export default {
       alt="" />
     </div>
     <div class="Top__heading">
-      <h1>Tuletulemine 1.juuni - 4.juuli 2019</h1>
+      <h1>Tuletulemine <span style="color: var(--fourth)">1.juuni - 4.juuli 2019</span></h1>
      <!-- <h2>1.juuni - 4.juuli 2019</h2>-->
    	</div>
     <div class="Top__social">

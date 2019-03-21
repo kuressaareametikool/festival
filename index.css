@@ -22,8 +22,8 @@ html {
   --white: #fffaf7;
 
   --base: 8px;
-  --base2: calc(var(--base) * 2);
-  --base3: calc(var(--base) * 3);
+  --base2: calc(var(--base) * 1.75);
+  --base3: calc(var(--base) * 2.5);
   --base4: calc(var(--base) * 4);
   --base5: calc(var(--base) * 5);
   --base6: calc(var(--base) * 6);
@@ -46,5 +46,20 @@ h1, h2, h3, h4 {
 }
 
 img {
-	width: 100%;
+  width: 100%;
+  display: block;
+}
+
+/* Transitions */
+
+.fade-enter-active {
+  transition: all 0.1s linear;
+}
+
+.fade-leave-active {
+  transition: all .1s linear;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

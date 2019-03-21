@@ -25,14 +25,14 @@
   align-items: baseline;
   justify-content: center;
 }
-.Top__heading>h1 {
+.Top__heading > h1 {
   margin: var(--base) 0 var(--base) 0;
   font-family: 'TTTravels', sans-serif;
-  font-size: var(--base2);
+  font-size: var(--base3);
   line-height: 1;
   color: var(--secondary);
 }
-.Top__heading>h2 {
+.Top__heading > h2 {
   margin: 0;
   font-family: 'TTTravels', sans-serif;
   font-size: var(--base2);

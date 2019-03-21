@@ -9,16 +9,7 @@
       },
       "geometry": {
         "type": "LineString",
-        "coordinates": [
-          [
-            27.819502,
-            59.335113 
-          ],
-          [
-            27.819502,
-            59.335113 
-          ]
-        ]
+        "coordinates": []
       }
     }
   ]

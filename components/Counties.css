@@ -2,6 +2,19 @@
 	padding: 0px 0 7px 0;
 }
 
+.Counties_toolbar {
+	background: url(../assets/background_blue.svg);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	color: white;
+	width: 100%;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
 .Counties__county {
   padding: 5px 10px;
   cursor: pointer;
