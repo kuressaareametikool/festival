@@ -16,7 +16,15 @@ export default {
       @click="localActiveCounty = county; $emit('changeCounty', county)"
       style="margin-right: 20px;"
     >
-      <div style="margin-right: 10px; width: 18px; height: 18px;"><img v-if="localActiveCounty == county" style="width: 18px; height: 18px;" src="markers/marker-torch__24x24@2x.png" /></div>
+      <div 
+        style="margin-right: 10px; width: 24px; height: 24px;"
+      >
+        <img
+          v-if="localActiveCounty == county"
+          style="width: 24px; height: 24px;"
+          src="markers/marker-torch__24x24@2x.png"
+        />
+      </div>
       <div style="
         flex: 1;
         display: flex;
