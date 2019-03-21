@@ -45,6 +45,7 @@ new Vue({
       "jarvamaa",
       "harjumaa",  
     ],
+    iconSizes: [1,1,1,1,1,1,1,1,1,1.5,1.5,2,2,2,3,3,3],
     countiesData: [],
     waypoints: [],
     activeCounty: "hiiumaa",
@@ -149,9 +150,9 @@ new Vue({
           :icon-anchor="[44 / 2 / 2, 51 / 2]"
         /> -->
         <l-icon
-          :icon-url="zoom > 10 ? 'markers/Marker_event2_BG@2x.png' : 'markers/marker-donut-red.png'"
-          :icon-size="[ 18, 18 ]"
-          :icon-anchor="[ 18/2, 18/2 ]"
+          :icon-url="zoom > 8 ? 'markers/Marker_event2_BG@2x.png' : 'markers/marker-donut-red.png'"
+          :icon-size="[ iconSizes[zoom] * 18, iconSizes[zoom] * 18 ]"
+          :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
         />
       </l-marker>
 
