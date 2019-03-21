@@ -51,6 +51,7 @@ new Vue({
     waypoints: [],
     activeCounty: "hiiumaa",
     activeEventId: null,
+    activePanel: 'counties',
   },
   methods: {
     buffer: turf.buffer,
@@ -93,7 +94,7 @@ new Vue({
     <div style="display: flex">
     <l-map
       ref="map"
-      style="height: 100vh; width: 50vw"
+      style="height: 100vh; width: 75vw"
       :zoom="zoom"
       :center="center"
       @update:zoom="z => zoom = z"
@@ -173,24 +174,26 @@ new Vue({
     <div style="flex: 1;">
       <div style="display: flex">
       <Counties
-        v-if="true"
+        v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => activeCounty = c"
+        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist' }"
         :activeCounty="activeCounty"
       />
       <EventList
+        v-if="activePanel == 'eventlist'"
         style="flex: 1;"
-        v-if="true"
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
-        @changeEvent="id => activeEventId = id"
+        @changeEvent="id => { activeEventId = id; activePanel = 'event' }"
+        @back="activePanel = 'counties'"
       />
       <Event
+        v-if="activePanel == 'event'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
-        v-if="true"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         @closeEvent="() => activeEventId = null"
+        @back="activePanel = 'eventlist'"
       />
       </div>
     </div>

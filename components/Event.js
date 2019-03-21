@@ -9,10 +9,9 @@ export default {
   // ⟨‹›⟩
   template: `
     <div class="Event">
-				<div class="CloseEvent" @click="$emit('closeEvent')">&times;</div>
-				<!--div class="Event_image">
-					<img :src="img">
-        </div-->
+        <div class="Event_toolbar">
+          <div @click="$emit('back')">Back</div>
+        </div>
         <div
         :style="{
           height: '200px',
