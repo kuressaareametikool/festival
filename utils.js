@@ -33,3 +33,9 @@ export const flatten = list =>
 
 export const shorten = (str, length = 50, suffix = "...") =>
   `${str.slice(0, length)}${str.length - 1 > length ? suffix : ""}`;
+
+export const titleCase = string =>
+  string
+    .split(" ")
+    .map(([h, ...t]) => h.toUpperCase() + t.join("").toLowerCase())
+    .join(" ");

@@ -1,3 +1,5 @@
+import { titleCase } from '../utils.js'
+
 export default {
   props: ["event", "activeCounty"],
   data: () => ({
@@ -6,12 +8,14 @@ export default {
     img2:
       "https://www.visitoslo.com/Images/Bilder%20Oslo/Hva%20skjer/Oya-Festival-2016-foto-Didrick-Stenersen.jpg?t=ScaleToFill%7c725x360&ts=iXZP7SIL7vNV0z15N6vgU3PqbaM%3d&pr=2"
   }),
-  // ⟨‹›⟩
+  methods: {
+    titleCase
+  },
   template: `
     <div class="Event">
         <div class="Event_toolbar">
-          <div @click="$emit('back')">Back</div>
-          <div @click="$emit('back')">{{ activeCounty }}</div>
+        <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
+          <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
           <div style="opacity: 0.3">⟨ ⟩</div>
         </div>
         <div

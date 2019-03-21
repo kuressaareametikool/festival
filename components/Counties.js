@@ -1,3 +1,5 @@
+import { titleCase } from '../utils.js'
+
 export default {
   props: ["counties", "activeCounty"],
   data: () => ({
@@ -5,6 +7,9 @@ export default {
   }),
   mounted() {
     this.localActiveCounty = this.activeCounty
+  },
+  methods: {
+    titleCase
   },
   template: `
   <div class="Counties">
@@ -36,7 +41,7 @@ export default {
         justify-content: space-between;
         align-items: center;
       ">
-        <div>{{ county }}</div>
+        <div>{{ titleCase(county) }}</div>
         <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
       </div>
     </div>

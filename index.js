@@ -119,9 +119,12 @@ new Vue({
   },
   template: `
   <div>
+    <div style="position: sticky; top: 0; box-shadow: 0px 3px 5px rgba(0,0,0,0.1); z-index: 1000000000000;">
     <Top />
+    </div>
     <div style="display: flex">
     <l-map
+      style="z-index: -100000;"
       ref="map"
       style="height: 100vh; width: 75vw"
       :zoom="zoom"
@@ -226,8 +229,7 @@ new Vue({
 
     </l-map>
 
-    <div style="flex: 1;">
-      <div style="display: flex">
+    <div style="flex: 1; box-shadow: -3px 0px 5px rgba(0,0,0,0.1); z-index: 1000000">
       <transition appear name="fade" mode="out-in">
       <Counties
         v-if="activePanel == 'counties'"
@@ -253,7 +255,6 @@ new Vue({
         @back="activePanel = 'eventlist'; zoom = 9; center = centers[activeCounty]"
       />
       </transition>
-      </div>
     </div>
 
     <!-- </div> -->
