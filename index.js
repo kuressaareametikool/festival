@@ -48,13 +48,16 @@ new Vue({
     countiesData: [],
     waypoints: [],
     activeCounty: "hiiumaa",
-    activeEventId: null
+    activeEventId: null,
   },
   methods: {
     buffer: turf.buffer,
     waypointsToGeoJSON
   },
   mounted() {
+    this.$nextTick(() => {
+      console.log(this.$refs.map.mapObject.zoom);
+    })
     // fetch(
     //   `https://spreadsheets.google.com/feeds/list/${
     //     this.id
@@ -84,8 +87,15 @@ new Vue({
   template: `
   <div>
     <Top />
+    {{ zoom }}
     <div style="display: flex">
-    <l-map style="height: 100vh; width: 50vw" :zoom="zoom" :center="center">
+    <l-map
+      ref="map"
+      style="height: 100vh; width: 50vw"
+      :zoom="zoom"
+      :center="center"
+      @update:zoom="z => zoom = z"
+    >
       <l-tile-layer :url="url"/>
       
       <!-- Buffered geometry for debugging -->
