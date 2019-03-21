@@ -58,6 +58,14 @@ new Vue({
     waypointsToGeoJSON,
     shorten
   },
+  computed: {
+    activeEvent() {
+      if (this.activeEventId) {
+        return this.waypoints.filter(w => w.ID == this.activeEventId)[0]
+      }
+      return null
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       console.log(this.$refs.map.mapObject.zoom);
@@ -177,7 +185,7 @@ new Vue({
         v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist' }"
+        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 10 }"
         :activeCounty="activeCounty"
       />
       <EventList
@@ -186,16 +194,15 @@ new Vue({
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
         :activeCounty="activeCounty"
-        @changeEvent="id => { activeEventId = id; activePanel = 'event' }"
-        @back="activePanel = 'counties'"
+        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 15; center = [activeEvent.lat,activeEvent.lng] }"
+        @back="activePanel = 'counties'; zoom = 7"
       />
       <Event
         v-if="activePanel == 'event'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         :activeCounty="activeCounty"
-        @closeEvent="() => activeEventId = null"
-        @back="activePanel = 'eventlist'"
+        @back="activePanel = 'eventlist'; zoom = 10"
       />
       </div>
     </div>
