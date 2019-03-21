@@ -9,6 +9,8 @@ Vue.component("l-polyline", Vue2Leaflet.LPolyline);
 Vue.component("l-geo-json", Vue2Leaflet.LGeoJson);
 Vue.component("l-icon", Vue2Leaflet.LIcon);
 Vue.component("l-tooltip", Vue2Leaflet.LTooltip);
+Vue.component('l-tooltip', Vue2Leaflet.LTooltip)
+Vue.component('l-popup', Vue2Leaflet.LPopup)
 
 // Custom components
 
