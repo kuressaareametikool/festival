@@ -16,9 +16,15 @@ export default {
         v-for="(event,i) in events"
         :key="i"
         @click="$emit('changeEvent', event.ID)"
+        style="display: flex"
       >
-        <div>{{ shorten(event.name) }}</div>
-        <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
+        <div style="width: 20px; margin: 2px 10px 0 0;">
+          <img :src="'markers2/event_brown.png'" />
+        </div>
+        <div style="flex: 1">
+          <div>{{ shorten(event.name) }}</div>
+          <div style="font-size: 0.8em; opacity: 0.5">1. juuli - 12. juuli</div>
+        </div>
       </div>
     </div>
   `

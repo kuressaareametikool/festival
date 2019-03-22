@@ -14,7 +14,7 @@ html {
 
 :root {
   --primary: #0075B0;
-  --primary-light: hsl(200,80%,90%);
+  --primary-light: hsl(200,50%,93%);
   --secondary: #9A3B26;
   --third: #EDCFB3;
   --fourth: #EF7659;

@@ -1,4 +1,6 @@
 .Counties {
+  height: calc(100vh - 75px);
+  overflow: auto;
 }
 
 .Counties_toolbar {
@@ -15,12 +17,14 @@
 }
 
 .Counties__county {
-  padding: 5px 10px;
+  padding: 10px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   color: #777;
+  border-bottom: 1px solid #eaeaea;
 }
+
 .Counties__county:hover {
   background: var(--primary-light);
 }

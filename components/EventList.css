@@ -25,5 +25,10 @@
 
 .EventList__event {
   padding: 15px;
-  cursor: pointer;
+	cursor: pointer;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.EventList__event:hover {
+  background: var(--primary-light);
 }
