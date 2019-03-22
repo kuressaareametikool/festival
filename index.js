@@ -244,7 +244,7 @@ new Vue({
       >
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
-          icon-url="markers/Marker_event2_BG@2x.png"
+          :icon-url="w.stage_id == 1297 ? 'markers2/event_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png' : 'markers2/torch_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png'"
           :icon-size="[ iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1) ]"
           :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
         />
@@ -259,7 +259,7 @@ new Vue({
       >
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
-          icon-url="markers/marker-torch_brown@2x.png"
+          icon-url="markers2/torch_blue.png"
           :icon-size="[ iconSizes[zoom] * 24 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 24 * (activeEventId == w.ID ? 1.5 : 1) ]"
           :icon-anchor="[ iconSizes[zoom] * 24/2, iconSizes[zoom] * 24/2 ]"
         />

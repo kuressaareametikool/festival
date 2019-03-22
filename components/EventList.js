@@ -19,7 +19,7 @@ export default {
         style="display: flex"
       >
         <div style="width: 20px; margin: 2px 10px 0 0;">
-          <img :src="'markers2/event_brown.png'" />
+          <img :src="event.stage_id == 1297 ? 'markers2/event_brown.png' : 'markers2/torch_blue.png'" />
         </div>
         <div style="flex: 1">
           <div>{{ shorten(event.name) }}</div>
