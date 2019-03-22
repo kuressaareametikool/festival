@@ -197,7 +197,7 @@ new Vue({
         :geojson="county.data"
         :optionsStyle="{
           color: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 'var(--fourth)' : '#777',
-          opacity: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 1 : 0.5
+          opacity: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 0.8 : 0.4
         }"
       />
 
@@ -209,7 +209,7 @@ new Vue({
         @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
         :fill="true"
         :radius="zoom - 4"
-        :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'var(--secondary)' : '#777'"
+        :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? w.stage_id == 1297 ? 'var(--secondary)' : 'var(--primary)' : '#777'"
         fillColor="white"
         :fillOpacity="1"
         :weight="2"
@@ -225,8 +225,8 @@ new Vue({
         :lat-lng="[w.lat,w.lng]"
         @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
         :fill="true"
-        :radius="zoom - 4"
-        :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'var(--fourth)' : '#777'"
+        :radius="zoom - 3"
+        :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? w.stage_id == 1297 ? 'var(--secondary)' : 'var(--primary)' : '#777'"
         fillColor="white"
         :fillOpacity="1"
         :weight="2"
@@ -244,7 +244,7 @@ new Vue({
       >
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
-          :icon-url="w.stage_id == 1297 ? 'markers2/event_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png' : 'markers2/torch_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png'"
+          :icon-url="w.stage_id == 1297 ? 'markers2/event_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png' : 'markers2/torch_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'blue' : 'gray') + '.png'"
           :icon-size="[ iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1) ]"
           :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
         />
@@ -295,7 +295,7 @@ new Vue({
       </transition>
     </div>
 
-    <div style="transform: scale(1.5); transform-origin: 0 20px; position: fixed; left: 20px; bottom: 20px; z-index: 1000000;">
+    <div v-if="false" style="transform: scale(1.5); transform-origin: 0 20px; position: fixed; left: 20px; bottom: 20px; z-index: 1000000;">
         <img src="assets/kihid_menu.svg" />
       </div>
     <!-- </div> -->
