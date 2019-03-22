@@ -46,7 +46,7 @@ export default {
           }"></div>
         </div>
       <div class="EventInfo">
-      	<div class="EventInfo_date">
+      	<div class="EventInfo_date" style="transform: scale(0.8); opacity: 0.5;">
       		<h3 class="EventInfo_date_number">
       		16.
        		</h3>
@@ -54,16 +54,16 @@ export default {
       		aprill
       		</h5>
       	</div>
-      	<div class="EventInfo_meta">
-      		<h3 class="EventInfo_name">
-      		{{ event.name }}
-       		</h3>
+      	<div class="EventInfo_meta" style="transform: translateY(-7px);">
        		<p class="EventInfo_location">
       		Orjaku külamaja	19.00-02.00
       		</p>
       	</div>
-      	</div>
-      	<div class="EventInfo_description">
+        </div>
+        <h3 class="EventInfo_name" style="padding: 0 20px;">
+      		{{ event.name }}
+       	</h3>
+      	<div class="EventInfo_description" style="opacity: 0.8">
       	Jazzfestivali koduses õhkkonnas võib nautida nii mahedamat kui ka mürglimat muusikat. Esinejad nii Eestist kui mujalt.
 		Sissepääs tasuta.
       </div>
