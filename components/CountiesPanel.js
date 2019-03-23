@@ -12,15 +12,15 @@ export default {
     titleCase
   },
   template: `
-  <div class="Counties">
-    <div class="Counties_toolbar">
+  <div class="CountiesPanel">
+    <div class="CountiesPanel__toolbar">
       <div>Maakonnad</div>
     </div>
     <div
       v-for="(county,i) in counties"
       :key="i"
-      class="Counties__county"
-      :class="{Counties__county__active: localActiveCounty == county}"
+      class="CountiesPanel__county"
+      :class="{CountiesPanel__county__active: localActiveCounty == county}"
       @click="localActiveCounty = county; $emit('changeCounty', county)"
       style="margin-right: 20px;"
       :style="{opacity: i >= 2 ? 1 : 0.25}"
@@ -32,7 +32,7 @@ export default {
           v-if="i <= 2"
           style="width: 24px; height: 24px;"
           :style="{filter: i == 2 ? '' : 'grayscale(100%)'}"
-          src="markers/marker-torch_brown@2x.png"
+          src="../markers/torch_blue.png"
         />
       </div>
       <div style="

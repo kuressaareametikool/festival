@@ -1,9 +1,9 @@
-.Counties {
+.CountiesPanel {
   height: calc(100vh - 75px);
   overflow: auto;
 }
 
-.Counties_toolbar {
+.CountiesPanel__toolbar {
 	background: url(../assets/background_blue.svg);
 	height: 50px;
 	display: flex;
@@ -16,7 +16,7 @@
   margin-bottom: 10px;
 }
 
-.Counties__county {
+.CountiesPanel__county {
   padding: 10px 10px;
   cursor: pointer;
   display: flex;
@@ -25,10 +25,10 @@
   border-bottom: 1px solid #eaeaea;
 }
 
-.Counties__county:hover {
+.CountiesPanel__county:hover {
   background: var(--primary-light);
 }
 
-.Counties__county__active {
+.CountiesPanel__county__active {
   color: #333;
 }
