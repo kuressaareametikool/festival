@@ -1,4 +1,4 @@
-import { parseSheet, shorten, iconSizes } from "./utils.js";
+import { parseSheet, shorten, iconSizes, countyCenters } from "./utils.js";
 
 // Register vue-leaflet map components globally
 
@@ -26,14 +26,13 @@ new Vue({
   el: "#app",
   components: { Top, PoiLayer, CountiesPanel, EventsPanel, EventPanel },
   data: {
-    url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
+    // For raw OSM map tiles uncomment the row below
+    //url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     zoom: 7,
-    center: [58.75, 24],
+    center: countyCenters.eesti,
     pois: [],
-    value: null,
     counties: [
-      //"eesti",
       "saaremaa",
       "hiiumaa",
       "laanemaa",
@@ -50,24 +49,7 @@ new Vue({
       "jarvamaa",
       "harjumaa"
     ],
-    centers: {
-      hiiumaa: [58.87, 22.67],
-      saaremaa: [58.37, 22.46],
-      harjumaa: [59.35, 24.93],
-      valgamaa: [57.86, 26.23],
-      vorumaa: [57.89, 27.01],
-      parnumaa: [58.45, 24.52],
-      idavirumaa: [59.23, 27.42],
-      jarvamaa: [58.9, 25.63],
-      laanemaa: [58.95, 23.81],
-      laanevirumaa: [59.23, 26.38],
-      polvamaa: [58.08, 27.12],
-      raplamaa: [58.93, 24.66],
-      viljandimaa: [58.33, 25.57],
-      tartumaa: [58.39, 26.73],
-      jogevamaa: [58.74, 26.49],
-      eesti: [58.82, 25.54]
-    },
+    countyCenters,
     countiesData: [],
     waypoints: [],
     activeCounty: "laanemaa",
@@ -233,7 +215,7 @@ new Vue({
         v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 9; center = centers[activeCounty] }"
+        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 9; center = countyCenters[activeCounty] }"
         :activeCounty="activeCounty"
       />
       <EventsPanel
@@ -250,7 +232,7 @@ new Vue({
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         :activeCounty="activeCounty"
-        @back="activePanel = 'eventlist'; zoom = 9; center = centers[activeCounty]"
+        @back="activePanel = 'eventlist'; zoom = 9; center = countyCenters[activeCounty]"
       />
       </transition>
     </div>
