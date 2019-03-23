@@ -1,4 +1,4 @@
-import { parseSheet, waypointsToGeoJSON, shorten } from "./utils.js";
+import { parseSheet, shorten, iconSizes } from "./utils.js";
 
 // Register vue-leaflet map components globally
 
@@ -67,7 +67,6 @@ new Vue({
       jogevamaa: [58.74, 26.49],
       eesti: [58.82, 25.54]
     },
-    iconSizes: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 2, 2, 2, 3, 3, 3],
     countiesData: [],
     waypoints: [],
     activeCounty: "laanemaa",
@@ -75,9 +74,8 @@ new Vue({
     activePanel: "counties"
   },
   methods: {
-    buffer: turf.buffer,
-    waypointsToGeoJSON,
-    shorten
+    shorten,
+    iconSizes
   },
   computed: {
     activeEvent() {
@@ -143,38 +141,6 @@ new Vue({
       <l-control-zoom position="bottomright"></l-control-zoom>
       <l-tile-layer :url="url"/>
       
-      <!-- Data from Google Sheets -->
-      
-      <l-circle-marker
-        v-if="pois.length && zoom < 9"
-        v-for="(p,i) in pois"
-        :key="'l1' + i"
-        :lat-lng="[p.lat,p.lng]"
-        :fill="true"
-        :radius="zoom - 4"
-        color="#777"
-        fillColor="#aaa"
-        :fillOpacity="1"
-        :weight="2"
-        :opacity="0.5"
-      >
-        <l-tooltip>{{ shorten(p.title) }}</l-tooltip>
-      </l-circle-marker>
-
-      <l-marker
-        v-if="pois.length && zoom >= 9"
-        v-for="(p,i) in pois"
-        :key="'l2' + i"
-        :lat-lng="[p.lat,p.lng]"
-      >
-        <l-tooltip>{{ shorten(p.title) }}</l-tooltip>
-        <l-icon
-          :icon-url="p.type == 'poi' ? 'markers/poi_gray.png' : 'markers/photo_gray.png'"
-          :icon-size="[ iconSizes[zoom] * 18, iconSizes[zoom] * 18 ]"
-          :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
-        />
-      </l-marker>
-      
       <!--Tracks data -->
 
       <l-geo-json
@@ -232,8 +198,8 @@ new Vue({
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
           :icon-url="w.stage_id == 1297 ? 'markers/event_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png' : 'markers/torch_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'blue' : 'gray') + '.png'"
-          :icon-size="[ iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 18 * (activeEventId == w.ID ? 1.5 : 1) ]"
-          :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
+          :icon-size="[ iconSizes(zoom) * 18 * (activeEventId == w.ID ? 1.5 : 1), iconSizes(zoom) * 18 * (activeEventId == w.ID ? 1.5 : 1) ]"
+          :icon-anchor="[ iconSizes(zoom) * 18/2, iconSizes(zoom) * 18/2 ]"
         />
       </l-marker>
 
@@ -247,14 +213,18 @@ new Vue({
         <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
         <l-icon
           icon-url="markers/torch_blue.png"
-          :icon-size="[ iconSizes[zoom] * 24 * (activeEventId == w.ID ? 1.5 : 1), iconSizes[zoom] * 24 * (activeEventId == w.ID ? 1.5 : 1) ]"
-          :icon-anchor="[ iconSizes[zoom] * 24/2, iconSizes[zoom] * 24/2 ]"
+          :icon-size="[ iconSizes(zoom) * 24 * (activeEventId == w.ID ? 1.5 : 1), iconSizes(zoom) * 24 * (activeEventId == w.ID ? 1.5 : 1) ]"
+          :icon-anchor="[ iconSizes(zoom) * 24/2, iconSizes(zoom) * 24/2 ]"
         />
       </l-marker>
 
     </l-map>
 
-    <div style="flex: 1; box-shadow: -3px 0px 5px rgba(0,0,0,0.1); z-index: 1000000">
+    <div style="
+      flex: 1;
+      box-shadow: -3px 0px 5px rgba(0,0,0,0.1);
+      z-index: 1000000"
+    >
       <transition appear name="fade" mode="out-in">
       <CountiesPanel
         v-if="activePanel == 'counties'"

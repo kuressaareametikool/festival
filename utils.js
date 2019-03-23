@@ -39,3 +39,8 @@ export const titleCase = string =>
     .split(" ")
     .map(([h, ...t]) => h.toUpperCase() + t.join("").toLowerCase())
     .join(" ");
+
+export const iconSizes = zoom => {
+  const sizes = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 2, 2, 2, 3, 3, 3]
+  return sizes[zoom]
+}
