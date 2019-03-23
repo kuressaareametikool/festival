@@ -17,6 +17,7 @@ Vue.component("l-control-zoom", Vue2Leaflet.LControlZoom);
 // Import custom components
 
 import Top from "./components/Top.js";
+import TracksLayer from "./components/TracksLayer.js";
 import PoiLayer from "./components/PoiLayer.js";
 import CountiesPanel from "./components/CountiesPanel.js";
 import EventsPanel from "./components/EventsPanel.js";
@@ -24,14 +25,20 @@ import EventPanel from "./components/EventPanel.js";
 
 new Vue({
   el: "#app",
-  components: { Top, PoiLayer, CountiesPanel, EventsPanel, EventPanel },
+  components: {
+    Top,
+    TracksLayer,
+    PoiLayer,
+    CountiesPanel,
+    EventsPanel,
+    EventPanel
+  },
   data: {
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
     // For raw OSM map tiles uncomment the row below
     //url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     zoom: 7,
     center: countyCenters.eesti,
-    pois: [],
     counties: [
       "saaremaa",
       "hiiumaa",
@@ -50,8 +57,9 @@ new Vue({
       "harjumaa"
     ],
     countyCenters,
-    countiesData: [],
+    tracks: [],
     waypoints: [],
+    pois: [],
     activeCounty: "laanemaa",
     activeEventId: null,
     activePanel: "counties"
@@ -75,7 +83,7 @@ new Vue({
       fetch(`./tracks/${c}.json`)
         .then(res => res.json())
         .then(res => {
-          this.countiesData.push({ county: c, data: res });
+          this.tracks.push({ county: c, data: res });
         });
     });
 
@@ -112,7 +120,7 @@ new Vue({
     <div style="display: flex">
     <l-map
       ref="map"
-      style="height: calc(100vh - 60px); width: 75vw"
+      style="height: calc(100vh - 60px); width: 75vw;"
       :zoom="zoom"
       :center="center"
       @update:zoom="newZoom => zoom = newZoom"
@@ -125,17 +133,19 @@ new Vue({
       <l-tile-layer :url="url"/>
       
       <PoiLayer :pois="pois" :zoom="zoom" />
+      <TracksLayer :tracks="tracks" :zoom="zoom" />
 
       <!--Tracks data -->
 
+      <!--
       <l-geo-json
-        v-if="countiesData.length"
-        v-for="(county,i) in countiesData"
+        v-if="tracks.length"
+        v-for="(t,i) in tracks"
         :key="'l3' + i"
-        :geojson="county.data"
+        :geojson="t.data"
         :optionsStyle="{
-          color: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 'var(--fourth)' : '#777',
-          opacity: county.county !== 'hiiumaa' && county.county !== 'saaremaa' ? 0.8 : 0.4
+          color: t.county !== 'hiiumaa' && t.county !== 'saaremaa' ? 'var(--fourth)' : '#777',
+          opacity: t.county !== 'hiiumaa' && t.county !== 'saaremaa' ? 0.8 : 0.4
         }"
       />
 
@@ -188,6 +198,7 @@ new Vue({
         />
       </l-marker>
 
+      -->
       <l-marker
         v-if="waypoints.length"
         v-for="(w,i) in waypoints.filter(w => w.ID == '66131')"
