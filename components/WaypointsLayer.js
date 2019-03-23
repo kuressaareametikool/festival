@@ -12,6 +12,7 @@ export default {
       :key="i"
       :lat-lng="[w.lat,w.lng]"
       @clickk="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
+      @click="$emit('waypointClick', w)"
       :fill="true"
       :radius="zoom - 4"
       :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? w.stage_id == 1297 ? 'var(--secondary)' : 'var(--primary)' : '#777'"

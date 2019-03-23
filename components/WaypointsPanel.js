@@ -15,7 +15,8 @@ export default {
         :style="{ background: activeEvent == event.ID ? 'var(--primary-light)' : ''}"
         v-for="(event,i) in events"
         :key="i"
-        @click="$emit('changeEvent', event.ID)"
+        @clickl="$emit('changeEvent', event.ID)"
+        @click="$emit('waypointClick', event)"
         style="display: flex"
       >
         <div style="width: 20px; margin: 2px 10px 0 0;">

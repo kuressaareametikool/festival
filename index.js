@@ -78,7 +78,20 @@ new Vue({
   },
   methods: {
     shorten,
-    iconSizes
+    iconSizes,
+    countyClick(county) {
+      this.activePanel = 'waypoints';
+      this.activeCounty = county;
+      this.zoom = 9
+      this.center = countyCenters[county]
+    },
+    waypointClick(waypoint) {
+      this.activePanel = 'waypoint'
+      this.activeCounty = waypoint.county
+      this.activeEventId = waypoint.ID
+      this.zoom = 10;
+      this.center = [waypoint.lat,waypoint.lng]
+    }
   },
   mounted() {
     // Get tracks
@@ -143,6 +156,7 @@ new Vue({
         :zoom="zoom"
         :activeCounty="activeCounty"
         :activeEventId="activeEventId"
+        @waypointClick="waypointClick"
       />
       <TorchLayer
         :waypoints="waypoints"
@@ -163,20 +177,21 @@ new Vue({
         v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 9; center = countyCenters[activeCounty] }"
+        @countyClick="countyClick"
         :activeCounty="activeCounty"
       />
-      <EventsPanel
-        v-if="activePanel == 'eventlist'"
+      <WaypointsPanel
+        v-if="activePanel == 'waypoints'"
         style="flex: 1;"
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
         :activeCounty="activeCounty"
         @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 12; center = [activeEvent.lat,activeEvent.lng] }"
+        @waypointClick="waypointClick"
         @back="activePanel = 'counties'; zoom = 7"
       />
-      <EventPanel
-        v-if="activePanel == 'event'"
+      <WaypointPanel
+        v-if="activePanel == 'waypoint'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         :activeCounty="activeCounty"
