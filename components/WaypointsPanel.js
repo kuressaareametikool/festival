@@ -4,14 +4,14 @@ export default {
   props: ['events', 'activeEvent', 'activeCounty'],
   methods: { shorten, titleCase },
   template: `
-    <div class="EventsPanel">
-      <div class="EventPanel__toolbar">
+    <div class="WaypointsPanel">
+      <div class="WaypointsPanel__toolbar">
         <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
         <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
         <div style="opacity: 0.3">⟨ ⟩</div>
       </div>
       <div
-        class="EventsPanel__event"
+        class="WaypointsPanel__event"
         :style="{ background: activeEvent == event.ID ? 'var(--primary-light)' : ''}"
         v-for="(event,i) in events"
         :key="i"

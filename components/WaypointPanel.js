@@ -12,8 +12,8 @@ export default {
     titleCase
   },
   template: `
-    <div class="EventPanel">
-        <div class="EventPanel__toolbar">
+    <div class="WaypointPanel">
+        <div class="WaypointPanel__toolbar">
         <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
           <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
           <div style="opacity: 0.3">⟨ ⟩</div>
@@ -45,25 +45,25 @@ export default {
             background: 'rgba(154,59,38,0.65)',
           }"></div>
         </div>
-      <div class="EventPanel__info">
-      	<div class="EventPanel__date" style="transform: scale(0.8); opacity: 0.5;">
-      		<h3 class="EventPanel__number">
+      <div class="WaypointPanel__info">
+      	<div class="WaypointPanel__date" style="transform: scale(0.8); opacity: 0.5;">
+      		<h3 class="WaypointPanel__number">
       		16.
        		</h3>
-       		<h5 class="EventPanel__month">
+       		<h5 class="WaypointPanel__month">
       		aprill
       		</h5>
       	</div>
-      	<div class="EventPanel__meta" style="transform: translateY(-7px);">
-       		<p class="EventPanel__location">
+      	<div class="WaypointPanel__meta" style="transform: translateY(-7px);">
+       		<p class="WaypointPanel__location">
       		Orjaku külamaja	19.00-02.00
       		</p>
       	</div>
         </div>
-        <h3 class="EventPanel__name" style="padding: 0 20px;">
+        <h3 class="WaypointPanel__name" style="padding: 0 20px;">
       		{{ event.name }}
        	</h3>
-      	<div class="EventPanel__description" style="opacity: 0.8">
+      	<div class="WaypointPanel__description" style="opacity: 0.8">
       	Jazzfestivali koduses õhkkonnas võib nautida nii mahedamat kui ka mürglimat muusikat. Esinejad nii Eestist kui mujalt.
 		Sissepääs tasuta.
       </div>

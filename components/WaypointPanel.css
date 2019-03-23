@@ -1,8 +1,8 @@
-.EventPanel {
+.WaypointPanel {
   height: 100vh;
 }
 
-.EventPanel__toolbar {
+.WaypointPanel__toolbar {
   background: url(../assets/background_blue.svg);
   height: 50px;
   display: flex;
@@ -14,33 +14,33 @@
   cursor: pointer;
 }
 
-.EventPanel__image {
+.WaypointPanel__image {
   filter: sepia(100%);
 }
-.EventPanel__info {
+.WaypointPanel__info {
   display: flex;
   padding: 15px;
 }
-.EventPanel__date {
+.WaypointPanel__date {
   padding: 10px;
   line-height: 1;
 }
-.EventPanel__month {
+.WaypointPanel__month {
   text-align: center;
   margin: 0;
 }
-.EventPanel__number {
+.WaypointPanel__number {
   font-weight: normal;
   font-size: 48px;
   text-align: center;
   margin: 0;
 }
-.EventPanel__meta {
+.WaypointPanel__meta {
   padding: 10px;
 }
-.EventPanel__name {
+.WaypointPanel__name {
   font-size: 1.1rem;
 }
-.EventPanel__description {
+.WaypointPanel__description {
   padding: 15px;
 }

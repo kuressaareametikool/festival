@@ -1,9 +1,9 @@
-.EventsPanel {
+.WaypointsPanel {
   height: calc(100vh - 75px);
   overflow: auto;
 }
 
-.EventsPanel__toolbar {
+.WaypointsPanel__toolbar {
 	background: url(../assets/background_blue.svg);
 	height: 50px;
 	display: flex;
@@ -15,7 +15,7 @@
 	cursor: pointer;
 }
 
-.EventsPanel__header {
+.WaypointsPanel__header {
 	height: 64px;
   background: url(../assets/background_blue.svg);
   display: flex;
@@ -23,12 +23,12 @@
   justify-content: space-between;
 }
 
-.EventsPanel__event {
+.WaypointsPanel__event {
   padding: 15px;
 	cursor: pointer;
 	border-bottom: 1px solid #eaeaea;
 }
 
-.EventsPanel__event:hover {
+.WaypointsPanel__event:hover {
   background: var(--primary-light);
 }

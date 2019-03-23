@@ -17,21 +17,25 @@ Vue.component("l-control-zoom", Vue2Leaflet.LControlZoom);
 // Import custom components
 
 import Top from "./components/Top.js";
+import TorchLayer from "./components/TorchLayer.js";
+import WaypointsLayer from "./components/WaypointsLayer.js";
 import TracksLayer from "./components/TracksLayer.js";
 import PoiLayer from "./components/PoiLayer.js";
 import CountiesPanel from "./components/CountiesPanel.js";
-import EventsPanel from "./components/EventsPanel.js";
-import EventPanel from "./components/EventPanel.js";
+import WaypointsPanel from "./components/WaypointsPanel.js";
+import WaypointPanel from "./components/WaypointPanel.js";
 
 new Vue({
   el: "#app",
   components: {
     Top,
+    TorchLayer,
+    WaypointsLayer,
     TracksLayer,
     PoiLayer,
     CountiesPanel,
-    EventsPanel,
-    EventPanel
+    WaypointsPanel,
+    WaypointPanel
   },
   data: {
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
@@ -64,10 +68,6 @@ new Vue({
     activeEventId: null,
     activePanel: "counties"
   },
-  methods: {
-    shorten,
-    iconSizes
-  },
   computed: {
     activeEvent() {
       if (this.activeEventId) {
@@ -75,6 +75,10 @@ new Vue({
       }
       return null;
     }
+  },
+  methods: {
+    shorten,
+    iconSizes
   },
   mounted() {
     // Get tracks
@@ -134,85 +138,18 @@ new Vue({
       
       <PoiLayer :pois="pois" :zoom="zoom" />
       <TracksLayer :tracks="tracks" :zoom="zoom" />
-
-      <!--Tracks data -->
-
-      <!--
-      <l-geo-json
-        v-if="tracks.length"
-        v-for="(t,i) in tracks"
-        :key="'l3' + i"
-        :geojson="t.data"
-        :optionsStyle="{
-          color: t.county !== 'hiiumaa' && t.county !== 'saaremaa' ? 'var(--fourth)' : '#777',
-          opacity: t.county !== 'hiiumaa' && t.county !== 'saaremaa' ? 0.8 : 0.4
-        }"
+      <WaypointsLayer
+        :waypoints="waypoints"
+        :zoom="zoom"
+        :activeCounty="activeCounty"
+        :activeEventId="activeEventId"
       />
-
-      <l-circle-marker
-        v-if="waypoints.length && zoom < 9"
-        v-for="(w,i) in waypoints.filter(w => w.county !== activeCounty)"
-        :key="'l4' + i"
-        :lat-lng="[w.lat,w.lng]"
-        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
-        :fill="true"
-        :radius="zoom - 4"
-        :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? w.stage_id == 1297 ? 'var(--secondary)' : 'var(--primary)' : '#777'"
-        fillColor="white"
-        :fillOpacity="1"
-        :weight="2"
-        :opacity="0.5"
-      >
-        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
-      </l-circle-marker>
-
-      <l-circle-marker
-        v-if="waypoints.length && zoom < 9"
-        v-for="(w,i) in waypoints.filter(w => w.county == activeCounty)"
-        :key="'l5' + i"
-        :lat-lng="[w.lat,w.lng]"
-        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
-        :fill="true"
-        :radius="zoom - 3"
-        :color="w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? w.stage_id == 1297 ? 'var(--secondary)' : 'var(--primary)' : '#777'"
-        fillColor="white"
-        :fillOpacity="1"
-        :weight="2"
-        :opacity="0.5"
-      >
-        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
-      </l-circle-marker>
-
-      <l-marker
-        v-if="waypoints.length && zoom >= 9"
-        v-for="(w,i) in waypoints"
-        :key="'l6' + i"
-        :lat-lng="[w.lat,w.lng]"
-        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 12; center = [w.lat,w.lng]"
-      >
-        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
-        <l-icon
-          :icon-url="w.stage_id == 1297 ? 'markers/event_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'brown' : 'gray') + '.png' : 'markers/torch_' + (w.county !== 'hiiumaa' && w.county !== 'saaremaa' ? 'blue' : 'gray') + '.png'"
-          :icon-size="[ iconSizes(zoom) * 18 * (activeEventId == w.ID ? 1.5 : 1), iconSizes(zoom) * 18 * (activeEventId == w.ID ? 1.5 : 1) ]"
-          :icon-anchor="[ iconSizes(zoom) * 18/2, iconSizes(zoom) * 18/2 ]"
-        />
-      </l-marker>
-
-      -->
-      <l-marker
-        v-if="waypoints.length"
-        v-for="(w,i) in waypoints.filter(w => w.ID == '66131')"
-        :key="'l7' + i"
-        :lat-lng="[w.lat,w.lng]"
-        @click="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 12; center = [w.lat,w.lng]"
-      >
-        <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
-        <l-icon
-          icon-url="markers/torch_blue.png"
-          :icon-size="[ iconSizes(zoom) * 24 * (activeEventId == w.ID ? 1.5 : 1), iconSizes(zoom) * 24 * (activeEventId == w.ID ? 1.5 : 1) ]"
-          :icon-anchor="[ iconSizes(zoom) * 24/2, iconSizes(zoom) * 24/2 ]"
-        />
-      </l-marker>
+      <TorchLayer
+        :waypoints="waypoints"
+        :zoom="zoom"
+        :activeCounty="activeCounty"
+        :activeEventId="activeEventId"
+      />
 
     </l-map>
 
@@ -248,13 +185,7 @@ new Vue({
       </transition>
     </div>
 
-    <div v-if="false" style="transform: scale(1.5); transform-origin: 0 20px; position: fixed; left: 20px; bottom: 20px; z-index: 1000000;">
-        <img src="assets/kihid_menu.svg" />
-      </div>
-    <!-- </div> -->
   </div>
   </div>
   `
 });
-
-// #0073a5

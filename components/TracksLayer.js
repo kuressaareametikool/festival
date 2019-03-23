@@ -1,11 +1,11 @@
 export default {
-  props: ['tracks','zoom'],
+  props: ["tracks", "zoom"],
   template: `
   <div>
     <l-geo-json
       v-if="tracks.length"
       v-for="(t,i) in tracks"
-      :key="'t' + i"
+      :key="i"
       :geojson="t.data"
       :optionsStyle="{
         color: t.county !== 'hiiumaa' && t.county !== 'saaremaa' ? 'var(--fourth)' : '#777',
@@ -14,4 +14,4 @@ export default {
     />
   </div>
   `
-}
+};
