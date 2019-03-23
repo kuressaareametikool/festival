@@ -1,6 +1,6 @@
 const turf = require("@turf/turf");
 
-const waypoints = require("./waypoints/waypoints.json");
+const waypoints = require("./waypoints.json");
 
 countiesData = [
   {

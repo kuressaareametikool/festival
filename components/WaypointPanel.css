@@ -1,0 +1,46 @@
+.WaypointPanel {
+  height: 100vh;
+}
+
+.WaypointPanel__toolbar {
+  background: url(../assets/background_blue.svg);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.WaypointPanel__image {
+  filter: sepia(100%);
+}
+.WaypointPanel__info {
+  display: flex;
+  padding: 15px;
+}
+.WaypointPanel__date {
+  padding: 10px;
+  line-height: 1;
+}
+.WaypointPanel__month {
+  text-align: center;
+  margin: 0;
+}
+.WaypointPanel__number {
+  font-weight: normal;
+  font-size: 48px;
+  text-align: center;
+  margin: 0;
+}
+.WaypointPanel__meta {
+  padding: 10px;
+}
+.WaypointPanel__name {
+  font-size: 1.1rem;
+}
+.WaypointPanel__description {
+  padding: 15px;
+}

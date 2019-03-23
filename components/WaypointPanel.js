@@ -4,18 +4,16 @@ export default {
   props: ["event", "activeCounty"],
   data: () => ({
     img:
-      "https://2019.laulupidu.ee/wp-content/uploads/2014-peo-galeriid/XXVI-Laulupeo-II-kontsert/Aivar-Pihelgas/Pildid/D4R1066-255x190.jpg",
-    img2:
       "https://www.visitoslo.com/Images/Bilder%20Oslo/Hva%20skjer/Oya-Festival-2016-foto-Didrick-Stenersen.jpg?t=ScaleToFill%7c725x360&ts=iXZP7SIL7vNV0z15N6vgU3PqbaM%3d&pr=2"
   }),
   methods: {
     titleCase
   },
   template: `
-    <div class="Event">
-        <div class="Event_toolbar">
-        <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
-          <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
+    <div class="WaypointPanel">
+      <div class="WaypointPanel__toolbar">
+        <div style="opacity: 0.6" @click="$emit('waypointBack')">← Tagasi</div>
+          <div @click="$emit('waypointBack')">{{ titleCase(activeCounty) }}</div>
           <div style="opacity: 0.3">⟨ ⟩</div>
         </div>
         <div
@@ -25,7 +23,7 @@ export default {
         }">
           <div
           :style="{
-            backgroundImage: 'url(' + img2 + ')',
+            backgroundImage: 'url(' + img + ')',
             position: 'absolute',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -45,25 +43,25 @@ export default {
             background: 'rgba(154,59,38,0.65)',
           }"></div>
         </div>
-      <div class="EventInfo">
-      	<div class="EventInfo_date" style="transform: scale(0.8); opacity: 0.5;">
-      		<h3 class="EventInfo_date_number">
+      <div class="WaypointPanel__info">
+      	<div class="WaypointPanel__date" style="transform: scale(0.8); opacity: 0.5;">
+      		<h3 class="WaypointPanel__number">
       		16.
        		</h3>
-       		<h5 class="EventInfo_date_month">
+       		<h5 class="WaypointPanel__month">
       		aprill
       		</h5>
       	</div>
-      	<div class="EventInfo_meta" style="transform: translateY(-7px);">
-       		<p class="EventInfo_location">
+      	<div class="WaypointPanel__meta" style="transform: translateY(-7px);">
+       		<p class="WaypointPanel__location">
       		Orjaku külamaja	19.00-02.00
       		</p>
       	</div>
         </div>
-        <h3 class="EventInfo_name" style="padding: 0 20px;">
+        <h3 class="WaypointPanel__name" style="padding: 0 20px;">
       		{{ event.name }}
        	</h3>
-      	<div class="EventInfo_description" style="opacity: 0.8">
+      	<div class="WaypointPanel__description" style="opacity: 0.8">
       	Jazzfestivali koduses õhkkonnas võib nautida nii mahedamat kui ka mürglimat muusikat. Esinejad nii Eestist kui mujalt.
 		Sissepääs tasuta.
       </div>
