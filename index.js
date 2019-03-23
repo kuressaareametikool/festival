@@ -17,13 +17,14 @@ Vue.component("l-control-zoom", Vue2Leaflet.LControlZoom);
 // Import custom components
 
 import Top from "./components/Top.js";
+import PoiLayer from "./components/PoiLayer.js";
 import CountiesPanel from "./components/CountiesPanel.js";
 import EventsPanel from "./components/EventsPanel.js";
 import EventPanel from "./components/EventPanel.js";
 
 new Vue({
   el: "#app",
-  components: { Top, CountiesPanel, EventsPanel, EventPanel },
+  components: { Top, PoiLayer, CountiesPanel, EventsPanel, EventPanel },
   data: {
     url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
@@ -141,6 +142,8 @@ new Vue({
       <l-control-zoom position="bottomright"></l-control-zoom>
       <l-tile-layer :url="url"/>
       
+      <PoiLayer :pois="pois" :zoom="zoom" />
+
       <!--Tracks data -->
 
       <l-geo-json

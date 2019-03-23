@@ -4,6 +4,7 @@ export default {
   props: ["pois", "zoom"],
   methods: { shorten, iconSizes },
   template: `
+  <div>
   <l-circle-marker
     v-if="pois.length && zoom < 9"
     v-for="(p,i) in pois"
@@ -29,9 +30,10 @@ export default {
     <l-tooltip>{{ shorten(p.title) }}</l-tooltip>
     <l-icon
       :icon-url="p.type == 'poi' ? 'markers/poi_gray.png' : 'markers/photo_gray.png'"
-      :icon-size="[ iconSizes[zoom] * 18, iconSizes[zoom] * 18 ]"
-      :icon-anchor="[ iconSizes[zoom] * 18/2, iconSizes[zoom] * 18/2 ]"
+      :icon-size="[ iconSizes(zoom) * 18, iconSizes(zoom) * 18 ]"
+      :icon-anchor="[ iconSizes(zoom) * 18/2, iconSizes(zoom) * 18/2 ]"
     />
   </l-marker>
+</div>
   `
 };
