@@ -63,3 +63,9 @@ export const countyCenters = {
   jogevamaa: [58.74, 26.49],
   eesti: [58.82, 25.54]
 };
+
+export const zooms = {
+    overview: 7,
+    county: 9,
+    waypoint: 11 
+}

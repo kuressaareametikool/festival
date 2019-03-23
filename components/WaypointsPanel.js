@@ -6,8 +6,8 @@ export default {
   template: `
     <div class="WaypointsPanel">
       <div class="WaypointsPanel__toolbar">
-        <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
-        <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
+        <div style="opacity: 0.6" @click="$emit('waypointsBack')">← Tagasi</div>
+        <div @click="$emit('waypointsBack')">{{ titleCase(activeCounty) }}</div>
         <div style="opacity: 0.3">⟨ ⟩</div>
       </div>
       <div
@@ -15,7 +15,8 @@ export default {
         :style="{ background: activeEvent == event.ID ? 'var(--primary-light)' : ''}"
         v-for="(event,i) in events"
         :key="i"
-        @click="$emit('changeEvent', event.ID)"
+        @clickl="$emit('changeEvent', event.ID)"
+        @click="$emit('waypointClick', event)"
         style="display: flex"
       >
         <div style="width: 20px; margin: 2px 10px 0 0;">

@@ -13,7 +13,7 @@ export default {
       v-for="(w,i) in waypoints.filter(w => w.ID == '66131')"
       :key="'l7' + i"
       :lat-lng="[w.lat,w.lng]"
-      @clickk="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 12; center = [w.lat,w.lng]"
+      @click="$emit('waypointClick', w)"
     >
       <l-tooltip>{{ shorten(w.name) }}</l-tooltip>
       <l-icon

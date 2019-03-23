@@ -1,12 +1,13 @@
-import { shorten, iconSizes } from "../utils.js";
+import { shorten, iconSizes, zooms } from "../utils.js";
 
 export default {
   props: ["pois", "zoom"],
+  data: () => ({ zooms }),
   methods: { shorten, iconSizes },
   template: `
   <div>
     <l-circle-marker
-      v-if="pois.length && zoom < 9"
+      v-if="pois.length && zoom < zooms.counties"
       v-for="(p,i) in pois"
       :key="i"
       :lat-lng="[p.lat,p.lng]"
@@ -22,7 +23,7 @@ export default {
     </l-circle-marker>
 
     <l-marker
-      v-if="pois.length && zoom >= 9"
+      v-if="pois.length && zoom >= zooms.counties"
       v-for="(p,i) in pois"
       :key="'pois2_' + i"
       :lat-lng="[p.lat,p.lng]"

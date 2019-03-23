@@ -21,7 +21,7 @@ export default {
       :key="i"
       class="CountiesPanel__county"
       :class="{CountiesPanel__county__active: localActiveCounty == county}"
-      @click="localActiveCounty = county; $emit('changeCounty', county)"
+      @click="localActiveCounty = county; $emit('countyClick', county)"
       style="margin-right: 20px;"
       :style="{opacity: i >= 2 ? 1 : 0.25}"
     >

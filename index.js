@@ -1,4 +1,4 @@
-import { parseSheet, shorten, iconSizes, countyCenters } from "./utils.js";
+import { parseSheet, shorten, iconSizes, countyCenters, zooms } from "./utils.js";
 
 // Register vue-leaflet map components globally
 
@@ -41,7 +41,8 @@ new Vue({
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
     // For raw OSM map tiles uncomment the row below
     //url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-    zoom: 7,
+    zoom: zooms.overview,
+    zooms,
     center: countyCenters.eesti,
     counties: [
       "saaremaa",
@@ -78,7 +79,29 @@ new Vue({
   },
   methods: {
     shorten,
-    iconSizes
+    iconSizes,
+    countyClick(county) {
+      this.activePanel = "waypoints";
+      this.activeCounty = county;
+      this.zoom = zooms.county;
+      this.center = countyCenters[county];
+    },
+    waypointsBack() {
+      this.activePanel = "counties";
+      this.zoom = zoom.overview;
+    },
+    waypointClick(waypoint) {
+      this.activePanel = "waypoint";
+      this.activeCounty = waypoint.county;
+      this.activeEventId = waypoint.ID;
+      this.zoom = zooms.waypoint;
+      this.center = [waypoint.lat, waypoint.lng];
+    },
+    waypointBack() {
+      this.activePanel = 'waypoints';
+      this.zoom = zooms.overview;
+      this.center = this.countyCenters[this.activeCounty]
+    },
   },
   mounted() {
     // Get tracks
@@ -143,6 +166,7 @@ new Vue({
         :zoom="zoom"
         :activeCounty="activeCounty"
         :activeEventId="activeEventId"
+        @waypointClick="waypointClick"
       />
       <TorchLayer
         :waypoints="waypoints"
@@ -163,24 +187,24 @@ new Vue({
         v-if="activePanel == 'counties'"
         style="flex: 1;"
         :counties="counties"
-        @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 9; center = countyCenters[activeCounty] }"
+        @countyClick="countyClick"
         :activeCounty="activeCounty"
       />
-      <EventsPanel
-        v-if="activePanel == 'eventlist'"
+      <WaypointsPanel
+        v-if="activePanel == 'waypoints'"
         style="flex: 1;"
         :events="waypoints.filter(w => w.county == activeCounty)"
         :active-event="activeEventId"
         :activeCounty="activeCounty"
-        @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 12; center = [activeEvent.lat,activeEvent.lng] }"
-        @back="activePanel = 'counties'; zoom = 7"
+        @waypointClick="waypointClick"
+        @waypointsBack="waypointsBack"
       />
-      <EventPanel
-        v-if="activePanel == 'event'"
+      <WaypointPanel
+        v-if="activePanel == 'waypoint'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"
         :activeCounty="activeCounty"
-        @back="activePanel = 'eventlist'; zoom = 9; center = countyCenters[activeCounty]"
+        @waypointBack="waypointBack"
       />
       </transition>
     </div>
