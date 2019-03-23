@@ -18,12 +18,12 @@ Vue.component("l-control-zoom", Vue2Leaflet.LControlZoom);
 
 import Top from "./components/Top.js";
 import CountiesPanel from "./components/CountiesPanel.js";
-import EventList from "./components/EventList.js";
-import Event from "./components/Event.js";
+import EventsPanel from "./components/EventsPanel.js";
+import EventPanel from "./components/EventPanel.js";
 
 new Vue({
   el: "#app",
-  components: { Top, CountiesPanel, EventList, Event },
+  components: { Top, CountiesPanel, EventsPanel, EventPanel },
   data: {
     url2: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
@@ -263,7 +263,7 @@ new Vue({
         @changeCounty="c => { activeCounty = c; activePanel = 'eventlist', zoom = 9; center = centers[activeCounty] }"
         :activeCounty="activeCounty"
       />
-      <EventList
+      <EventsPanel
         v-if="activePanel == 'eventlist'"
         style="flex: 1;"
         :events="waypoints.filter(w => w.county == activeCounty)"
@@ -272,7 +272,7 @@ new Vue({
         @changeEvent="id => { activeEventId = id; activePanel = 'event'; zoom = 12; center = [activeEvent.lat,activeEvent.lng] }"
         @back="activePanel = 'counties'; zoom = 7"
       />
-      <Event
+      <EventPanel
         v-if="activePanel == 'event'"
         style="flex: 1; box-shadow: -5px 0px 10px rgba(0,0,0,.1);"
         :event="waypoints.filter(w => w.ID == activeEventId)[0]"

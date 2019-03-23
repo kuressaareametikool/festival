@@ -1,0 +1,46 @@
+.EventPanel {
+  height: 100vh;
+}
+
+.EventPanel__toolbar {
+  background: url(../assets/background_blue.svg);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.EventPanel__image {
+  filter: sepia(100%);
+}
+.EventPanel__info {
+  display: flex;
+  padding: 15px;
+}
+.EventPanel__date {
+  padding: 10px;
+  line-height: 1;
+}
+.EventPanel__month {
+  text-align: center;
+  margin: 0;
+}
+.EventPanel__number {
+  font-weight: normal;
+  font-size: 48px;
+  text-align: center;
+  margin: 0;
+}
+.EventPanel__meta {
+  padding: 10px;
+}
+.EventPanel__name {
+  font-size: 1.1rem;
+}
+.EventPanel__description {
+  padding: 15px;
+}

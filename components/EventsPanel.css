@@ -1,9 +1,9 @@
-.EventList {
+.EventsPanel {
   height: calc(100vh - 75px);
   overflow: auto;
 }
 
-.EventList_toolbar {
+.EventsPanel__toolbar {
 	background: url(../assets/background_blue.svg);
 	height: 50px;
 	display: flex;
@@ -15,7 +15,7 @@
 	cursor: pointer;
 }
 
-.EventList_header {
+.EventsPanel__header {
 	height: 64px;
   background: url(../assets/background_blue.svg);
   display: flex;
@@ -23,12 +23,12 @@
   justify-content: space-between;
 }
 
-.EventList__event {
+.EventsPanel__event {
   padding: 15px;
 	cursor: pointer;
 	border-bottom: 1px solid #eaeaea;
 }
 
-.EventList__event:hover {
+.EventsPanel__event:hover {
   background: var(--primary-light);
 }
