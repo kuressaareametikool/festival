@@ -4,8 +4,6 @@ export default {
   props: ["event", "activeCounty"],
   data: () => ({
     img:
-      "https://2019.laulupidu.ee/wp-content/uploads/2014-peo-galeriid/XXVI-Laulupeo-II-kontsert/Aivar-Pihelgas/Pildid/D4R1066-255x190.jpg",
-    img2:
       "https://www.visitoslo.com/Images/Bilder%20Oslo/Hva%20skjer/Oya-Festival-2016-foto-Didrick-Stenersen.jpg?t=ScaleToFill%7c725x360&ts=iXZP7SIL7vNV0z15N6vgU3PqbaM%3d&pr=2"
   }),
   methods: {
@@ -13,9 +11,9 @@ export default {
   },
   template: `
     <div class="WaypointPanel">
-        <div class="WaypointPanel__toolbar">
-        <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
-          <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
+      <div class="WaypointPanel__toolbar">
+        <div style="opacity: 0.6" @click="$emit('waypointBack')">← Tagasi</div>
+          <div @click="$emit('waypointBack')">{{ titleCase(activeCounty) }}</div>
           <div style="opacity: 0.3">⟨ ⟩</div>
         </div>
         <div
@@ -25,7 +23,7 @@ export default {
         }">
           <div
           :style="{
-            backgroundImage: 'url(' + img2 + ')',
+            backgroundImage: 'url(' + img + ')',
             position: 'absolute',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',

@@ -1,17 +1,17 @@
-import { shorten, iconSizes } from "../utils.js";
+import { shorten, iconSizes, zooms } from "../utils.js";
 
 export default {
   props: ["waypoints", "zoom", "activeCounty", "activeEventId"],
+  data: () => ({ zooms }),
   methods: { shorten, iconSizes },
   template: `
   <div>
 
     <l-circle-marker
-      v-if="waypoints.length && zoom < 9"
+      v-if="waypoints.length && zoom < zooms.county"
       v-for="(w,i) in waypoints.filter(w => w.county !== activeCounty)"
       :key="i"
       :lat-lng="[w.lat,w.lng]"
-      @clickk="activeEventId = w.ID; activeCounty = w.county; activePanel = 'event'; zoom = 10; center = [w.lat,w.lng]"
       @click="$emit('waypointClick', w)"
       :fill="true"
       :radius="zoom - 4"
@@ -25,7 +25,7 @@ export default {
     </l-circle-marker>
 
     <l-marker
-      v-if="waypoints.length && zoom >= 9"
+      v-if="waypoints.length && zoom >= zooms.county"
       v-for="(w,i) in waypoints"
       :key="'l6' + i"
       :lat-lng="[w.lat,w.lng]"

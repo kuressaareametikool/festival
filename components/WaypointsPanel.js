@@ -6,8 +6,8 @@ export default {
   template: `
     <div class="WaypointsPanel">
       <div class="WaypointsPanel__toolbar">
-        <div style="opacity: 0.6" @click="$emit('back')">← Tagasi</div>
-        <div @click="$emit('back')">{{ titleCase(activeCounty) }}</div>
+        <div style="opacity: 0.6" @click="$emit('waypointsBack')">← Tagasi</div>
+        <div @click="$emit('waypointsBack')">{{ titleCase(activeCounty) }}</div>
         <div style="opacity: 0.3">⟨ ⟩</div>
       </div>
       <div
