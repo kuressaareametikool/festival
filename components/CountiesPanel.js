@@ -32,7 +32,7 @@ export default {
           v-if="i <= 2"
           style="width: 24px; height: 24px;"
           :style="{filter: i == 2 ? '' : 'grayscale(100%)'}"
-          src="../markers/torch_blue.png"
+          src="markers/torch_blue.png"
         />
       </div>
       <div style="
