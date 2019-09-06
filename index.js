@@ -83,23 +83,23 @@ new Vue({
     countyClick(county) {
       this.activePanel = "waypoints";
       this.activeCounty = county;
-      this.zoom = zooms.county;
+      this.zoom = this.zooms.county;
       this.center = countyCenters[county];
     },
     waypointsBack() {
       this.activePanel = "counties";
-      this.zoom = zoom.overview;
+      this.zoom = this.zooms.overview;
     },
     waypointClick(waypoint) {
       this.activePanel = "waypoint";
       this.activeCounty = waypoint.county;
       this.activeEventId = waypoint.ID;
-      this.zoom = zooms.waypoint;
+      this.zoom = this.zooms.waypoint;
       this.center = [waypoint.lat, waypoint.lng];
     },
     waypointBack() {
       this.activePanel = 'waypoints';
-      this.zoom = zooms.overview;
+      this.zoom = this.zooms.overview;
       this.center = this.countyCenters[this.activeCounty]
     },
   },
